@@ -7,10 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PlantgramLogoComponent } from './shared/components/plantgram-logo/plantgram-logo.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PlantgramLogoComponent
   ],
   imports: [
     BrowserModule,
