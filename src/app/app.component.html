@@ -1,3 +1,8 @@
 <mat-toolbar color="primary">
-  <span><mat-icon inline="true">eco</mat-icon>Plantgram</span>
+  <span><app-plantgram-logo></app-plantgram-logo>Plantgram</span>
 </mat-toolbar>
+<mat-tab-group (selectedTabChange)="onTabChanged($event)">
+  <mat-tab label="Users"></mat-tab>
+  <mat-tab label="Settings"></mat-tab>
+</mat-tab-group>
+<router-outlet></router-outlet>
