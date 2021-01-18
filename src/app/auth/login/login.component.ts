@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {    
   }
 
+  password = new FormControl('', [Validators.required]);
   email = new FormControl('', [Validators.required, Validators.email]);
   getErrorMessage() {
     if (this.email.hasError('required')) {

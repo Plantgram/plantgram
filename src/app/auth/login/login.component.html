@@ -14,7 +14,7 @@
 
             <mat-form-field appearance="fill">
               <mat-label>Enter your password</mat-label>
-              <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+              <input matInput [type]="hide ? 'password' : 'text'" required>
               <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
@@ -23,7 +23,9 @@
             <br><button mat-raised-button color="primary">Login</button>
             <div class="separator" color="primary"> O R </div>
 
-            <mat-card>Don't have an account? <a href="/register">Create one!</a></mat-card>
+            <div><button mat-raised-button color="primary">Login with Facebook</button></div>
+            <div><a href="#" class="link">Forgot password?</a></div>
+            <mat-card>Don't have an account? <a href="/register" class="link">Create one!</a></mat-card>
 
           </div>          
         </form>
