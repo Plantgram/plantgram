@@ -1,0 +1,52 @@
+<section class="container">
+  <div class="image-area">
+    <img src="assets/plants-login-1.jpg" />
+  </div>
+  <div class="form-area">
+    <form class="example-form">
+      <div class="example-container">
+        <div class="title">
+          <app-plantgram-logo [size]="80"></app-plantgram-logo>Plantgram
+        </div>
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your email</mat-label>
+          <input
+            matInput
+            placeholder="pat@example.com"
+            formControlName="email"
+            required
+          />
+          <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="isVisible ? 'text' : 'password'" required />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="isVisible = !isVisible"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="isVisible"
+          >
+            <mat-icon>{{
+              isVisible ? "visibility" : "visibility_off"
+            }}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <br /><button mat-raised-button color="primary">Login</button>
+        <div class="separator" color="primary">O R</div>
+
+        <div>
+          <button mat-raised-button color="primary">Login with Facebook</button>
+        </div>
+        <div><a href="#" class="link">Forgot password?</a></div>
+        <mat-card
+          >Don't have an account?
+          <a href="/register" class="link">Create one!</a></mat-card
+        >
+      </div>
+    </form>
+  </div>
+</section>
