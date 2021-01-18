@@ -13,6 +13,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { ButtonExample } from './shared/components/button-example/button-example.component';
 import { MatIconModule } from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MatIconModule } from '@angular/material/icon';
     FlexLayoutModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   providers: [{
     provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,

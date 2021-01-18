@@ -9,7 +9,7 @@ import { RegisterComponent } from './auth/register/register.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'settings', loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
-  { path: 'settings', loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
+  { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 ];
