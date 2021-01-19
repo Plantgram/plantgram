@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCheckboxModule } from '@angular/material/checkbox'; 
+import { MatDividerModule } from '@angular/material/divider'; 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -17,6 +18,7 @@ import { ButtonExample } from './shared/components/button-example/button-example
 import { PlantgramLogoComponent } from './shared/components/plantgram-logo/plantgram-logo.component';
 import { ExploreComponent } from './explore/explore.component';
 import { PostComponent } from './shared/post/post.component';
+import { UserComponent } from './shared/user/user.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { PostComponent } from './shared/post/post.component';
     RegisterComponent,
     ButtonExample,
     ExploreComponent,
-    PostComponent
+    PostComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { PostComponent } from './shared/post/post.component';
     MatButtonModule,
     MatIconModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDividerModule
   ],
   providers: [{
     provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
