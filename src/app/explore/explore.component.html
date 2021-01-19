@@ -15,6 +15,9 @@
         </section>
     </aside>
     <section class="explore">
-        
+        <!-- <post *ngFor="let user of data" [item]="user"></post> -->
+        <ul>
+           <post class="item" *ngFor="let user of data" [item]="user"></post>
+        </ul>
     </section>
 </main>

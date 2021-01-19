@@ -16,6 +16,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { ButtonExample } from './shared/components/button-example/button-example.component';
 import { PlantgramLogoComponent } from './shared/components/plantgram-logo/plantgram-logo.component';
 import { ExploreComponent } from './explore/explore.component';
+import { PostComponent } from './shared/post/post.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ExploreComponent } from './explore/explore.component';
     LoginComponent,
     RegisterComponent,
     ButtonExample,
-    ExploreComponent
+    ExploreComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
