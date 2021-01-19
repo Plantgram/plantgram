@@ -1,0 +1,22 @@
+<main class="grid-container">
+    <aside class="left-sidebar">
+        <section>
+            <a href="/explore"><app-plantgram-logo [size]="90"></app-plantgram-logo><span color="primary"></span></a>
+        </section>
+        <section class="ls-icons-section">
+            <span class="material-icons">search</span>
+            <span class="material-icons">collections</span>
+            <span class="material-icons">groups</span>
+        </section>
+    </aside>
+    <aside class="right-sidebar">
+        <section>
+            <span class="material-icons">person</span>
+        </section>
+    </aside>
+    <section class="explore">        
+        <ul>
+           <post class="item" *ngFor="let user of data" [item]="user"></post>
+        </ul>
+    </section>
+</main>
