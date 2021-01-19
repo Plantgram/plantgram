@@ -4,14 +4,15 @@
             <a href="/explore"><app-plantgram-logo [size]="90"></app-plantgram-logo><span color="primary"></span></a>
         </section>
         <section class="ls-icons-section">
-            <span class="material-icons">search</span>
-            <span class="material-icons">collections</span>
-            <span class="material-icons">groups</span>
+            <span class="material-icons">search</span><mat-divider></mat-divider>
+            <span class="material-icons">collections</span><mat-divider></mat-divider>
+            <span class="material-icons">groups</span><mat-divider></mat-divider>
         </section>
     </aside>
     <aside class="right-sidebar">
         <section>
-            <span class="material-icons">person</span>
+            <span class="material-icons"><a [routerLink]="['/user', '2']">person_pin_circle</a></span>
+            <mat-divider></mat-divider>
         </section>
     </aside>
     <section class="explore">
