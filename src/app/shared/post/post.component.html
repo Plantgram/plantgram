@@ -1,12 +1,10 @@
-<!-- <p>{{item.user_name}}</p> -->
-<section class="card-container">
     <mat-card>
         <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>{{item.user_name}}</mat-card-title>
         <mat-card-subtitle>{{item.date_created}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="{{item.image}}.jpg" alt="Photo of a Shiba Inu" class="image">
+        <div mat-card-image [style.background-image]="'url(' + item.image + ')'" alt="Photo of a Shiba Inu" class="post-image"></div>
         <mat-card-content>
         <p>
             {{item.title}}
@@ -22,4 +20,3 @@
         <button mat-button>SHARE</button>
         </mat-card-actions>
     </mat-card>
-</section>
