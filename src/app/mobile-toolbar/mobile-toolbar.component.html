@@ -1,0 +1,21 @@
+<mat-progress-bar
+  mode="determinate"
+  value="100"
+  color="accent"
+></mat-progress-bar>
+<mat-toolbar color="primary">
+  <button mat-icon-button aria-label="open menu" (click)="menuClicked.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="logo"><app-plantgram-logo></app-plantgram-logo>Plantgram</span>
+  <span class="spacer"></span>
+  <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="open account menu"
+  >
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+<!-- <a [routerLink]="['/user', '2']">person_pin_circle</a> -->

@@ -1,4 +1,7 @@
-import { Component, Input } from '@angular/core';
+import {
+    Component,
+    Input,
+} from '@angular/core';
 
 @Component({
   selector: 'app-plantgram-logo',
@@ -6,5 +9,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./plantgram-logo.component.styl']
 })
 export class PlantgramLogoComponent {
-  @Input() size = 24;
+  @Input() size = '24px';
 }

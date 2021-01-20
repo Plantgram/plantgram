@@ -1,21 +1,43 @@
-<main class="grid-container">
-    <aside class="left-sidebar">
-        <section>
-            <a href="/explore"><app-plantgram-logo [size]="90"></app-plantgram-logo><span color="primary"></span></a>
-        </section>
-        <section class="ls-icons-section">
-            <span class="material-icons">search</span><mat-divider></mat-divider>
-            <span class="material-icons">collections</span><mat-divider></mat-divider>
-            <span class="material-icons">groups</span><mat-divider></mat-divider>
-        </section>
-    </aside>
-    <aside class="right-sidebar">
-        <section>
-            <span class="material-icons"><a [routerLink]="['/user', '2']">person_pin_circle</a></span>
-            <mat-divider></mat-divider>
-        </section>
-    </aside>
-    <section class="explore">
-        <post class="item" *ngFor="let user of data" [item]="user"></post>
+<app-mobile-toolbar
+  class="toolbar"
+  (menuClicked)="drawer.toggle()"
+></app-mobile-toolbar>
+
+<mat-drawer-container class="sidenav-container" autosize>
+  <mat-drawer color="primary" #drawer class="sidenav" mode="over">
+    <span class="logo"><app-plantgram-logo></app-plantgram-logo>Plantgram</span>
+    <mat-divider></mat-divider>
+    <div class="actionbar">
+      <mat-list role="list">
+        <mat-list-item role="listitem"
+          ><a mat-button [routerLink]="['/explore']"
+            ><mat-icon>explore</mat-icon>Explore</a
+          ></mat-list-item
+        >
+        <mat-list-item role="listitem"
+          ><button mat-button>
+            <mat-icon>notifications</mat-icon>Notifications
+          </button></mat-list-item
+        >
+        <mat-list-item role="listitem"
+          ><a mat-button [routerLink]="['/settings']"
+            ><mat-icon>settings</mat-icon>Settings</a
+          ></mat-list-item
+        >
+      </mat-list>
+    </div>
+  </mat-drawer>
+
+  <main class="sidenav-content">
+    <section
+      class="explore"
+      gdColumns="1fr"
+      gdColumns.sm="1fr 1fr"
+      gdColumns.gt-sm="1fr 1fr 1fr"
+      gdColumns.gt-md="1fr 1fr 1fr 1fr"
+      gdGap="60px 30px"
+    >
+      <post *ngFor="let post of posts" [item]="post"></post>
     </section>
-</main>
+  </main>
+</mat-drawer-container>

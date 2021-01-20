@@ -22,7 +22,7 @@ $mat-primary: (
       darker: $light-primary-text,
     ),
 );
-$plantgram-primary: mat-palette($mat-primary, main, lighter, darker);
+$plantgram-primary: mat-palette($mat-green, 600, 300, 800);
 
 $mat-accent: (
   main: #fd5523,
