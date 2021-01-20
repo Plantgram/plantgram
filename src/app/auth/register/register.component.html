@@ -1,1 +1,75 @@
-<p>register works!</p>
+<section class="container">
+    <div class="image-area">
+      <img src="assets/plants-login-1.jpg" />
+    </div>
+    <div class="form-area">
+        <form>
+            <div class="title" color="primary">
+                <app-plantgram-logo [size]="11"></app-plantgram-logo><span color="primary">Plantgram</span>
+            </div>
+         
+            <section class="name-section">
+                <mat-form-field class="">
+                    <mat-label>First name</mat-label>
+                    <input matInput>
+                </mat-form-field> 
+                <mat-form-field class="">
+                    <mat-label>Last name</mat-label>
+                    <input matInput>
+                </mat-form-field> 
+            </section>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your email</mat-label>
+                <input
+                matInput
+                placeholder="pat@example.com"
+                formControlName="email"
+                required
+                />
+                <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="isVisible ? 'text' : 'password'" required />
+                <button
+                mat-icon-button
+                matSuffix
+                (click)="isVisible = !isVisible"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="isVisible"
+                >
+                <mat-icon>{{
+                    isVisible ? "visibility" : "visibility_off"
+                }}</mat-icon>
+                </button>
+            </mat-form-field>  
+
+            <mat-form-field appearance="fill">
+                <mat-label>Confirm password</mat-label>
+                <input matInput [type]="isVisible ? 'text' : 'password'" required />
+                <button
+                mat-icon-button
+                matSuffix
+                (click)="isVisible = !isVisible"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="isVisible"
+                >
+                <mat-icon>{{
+                    isVisible ? "visibility" : "visibility_off"
+                }}</mat-icon>
+                </button>
+            </mat-form-field> 
+            
+            <div><button mat-raised-button color="primary">Register</button></div>
+            <div class="separator" color="primary">OR</div>
+            
+            <mat-card>
+                Already have an account?
+                <a href="/login" class="link">Log in!</a>
+            </mat-card>
+        </form>
+      </div>
+  </section>
+  
