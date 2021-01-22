@@ -11,6 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -52,6 +53,7 @@ import { UserComponent } from './shared/user/user.component';
     MatProgressBarModule,
     MatSidenavModule,
     MatListModule,
+    MatMenuModule
   ],
   providers: [{
     provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
