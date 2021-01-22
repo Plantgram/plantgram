@@ -10,14 +10,14 @@
     <div class="actionbar">
       <mat-list role="list">
         <mat-list-item role="listitem"
+        ><a mat-button [routerLink]="['/explore']"
+          ><mat-icon>search</mat-icon>Search</a
+        ></mat-list-item
+      >
+        <mat-list-item role="listitem"
           ><a mat-button [routerLink]="['/explore']"
             ><mat-icon>explore</mat-icon>Explore</a
           ></mat-list-item
-        >
-        <mat-list-item role="listitem"
-          ><button mat-button>
-            <mat-icon>notifications</mat-icon>Notifications
-          </button></mat-list-item
         >
         <mat-list-item role="listitem"
           ><a mat-button [routerLink]="['/settings']"

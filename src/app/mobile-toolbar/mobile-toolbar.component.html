@@ -8,14 +8,33 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span class="logo"><app-plantgram-logo></app-plantgram-logo>Plantgram</span>
-  <span class="spacer"></span>
-  <button
-    mat-icon-button
-    class="example-icon favorite-icon"
-    aria-label="open account menu"
-  >
-    <mat-icon>account_circle</mat-icon>
-  </button>
+  <div class="menu-icons">
+    <button mat-icon-button>
+      <mat-icon mat-button [matMenuTriggerFor]="beforeMenu">account_circle</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>notifications</mat-icon>
+    </button>    
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+      <ng-template matMenuContent let-name="user-menu">
+        <button class="test" mat-menu-item [routerLink]="['/user', '1']">
+          <mat-icon>perm_identity</mat-icon>
+          <span>My profile</span>
+        </button>
+        <button mat-menu-item [routerLink]="['/settings', '1']">
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable notifications</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item [routerLink]="['/logout']">
+          <mat-icon>login</mat-icon>
+          <span>Log off</span>
+        </button>
+      </ng-template>
+    </mat-menu>
+  </div>
 </mat-toolbar>
-
-<!-- <a [routerLink]="['/user', '2']">person_pin_circle</a> -->
