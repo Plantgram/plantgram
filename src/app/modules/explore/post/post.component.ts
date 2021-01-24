@@ -1,8 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { mock_data } from "../../../assets/mock_data";
+import {
+    Component,
+    Input,
+} from '@angular/core';
 
 @Component({
-  selector: 'post',
+  selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.styl']
 })

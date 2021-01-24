@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { mock_data } from '../../assets/mock_data';
+import { mock_data } from '../../../assets/mock_data';
 
 @Component({
   selector: 'app-explore',
