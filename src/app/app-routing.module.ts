@@ -4,23 +4,46 @@ import {
     Routes,
 } from '@angular/router';
 
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { ExploreComponent } from './explore/explore.component';
-import { UserComponent } from './shared/user/user.component';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/explore', pathMatch: 'full' },
-  { path: 'settings', loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
-  { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'explore', component: ExploreComponent },
-  { path: 'user/:id', component: UserComponent },
+  {
+    path: '',
+    redirectTo: 'explore',
+    pathMatch: 'full',
+  },
+  {
+    path: 'explore',
+    loadChildren: () =>
+      import('./modules/explore/explore.module').then((m) => m.ExploreModule),
+  },
+  {
+    path: 'user',
+    redirectTo: 'user/',
+    pathMatch: 'full',
+  },
+  {
+    path: 'user',
+    loadChildren: () =>
+      import('./modules/user/user.module').then((m) => m.UserModule),
+  },
+  {
+    path: 'settings',
+    loadChildren: () =>
+      import('./modules/settings/settings.module').then(
+        (m) => m.SettingsModule
+      ),
+  },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  },
+  { path: '**', component: PageNotFoundComponent }, // Wildcard route for a 404 page
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

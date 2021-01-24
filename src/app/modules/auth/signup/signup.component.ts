@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import {
-  FormControl,
-  Validators,
+    FormControl,
+    Validators,
 } from '@angular/forms';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.styl']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.styl']
 })
-export class RegisterComponent {
+export class SignupComponent {
   password = new FormControl('', [Validators.required]);
   email = new FormControl('', [Validators.required, Validators.email]);
 

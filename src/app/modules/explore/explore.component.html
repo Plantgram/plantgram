@@ -4,7 +4,7 @@
 ></app-mobile-toolbar>
 
 <mat-drawer-container class="sidenav-container" autosize>
-  <mat-drawer color="primary" #drawer class="sidenav" mode="over">  
+  <mat-drawer color="primary" #drawer class="sidenav" mode="over">
     <mat-divider></mat-divider>
     <div class="actionbar">
       <mat-list role="list">
@@ -36,7 +36,7 @@
       gdColumns.gt-md="1fr 1fr 1fr 1fr"
       gdGap="60px 30px"
     >
-      <post *ngFor="let post of posts" [item]="post"></post>
+      <app-post *ngFor="let post of posts" [item]="post"></app-post>
     </section>
   </main>
 </mat-drawer-container>
