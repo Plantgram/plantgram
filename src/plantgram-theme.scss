@@ -39,7 +39,6 @@ $mat-accent: (
 );
 $plantgram-accent: mat-palette($mat-accent, main, lighter, darker);
 $plantgram-warn: mat-palette($mat-red);
-
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as `color` or `typography`.
 $plantgram-theme: mat-light-theme(
@@ -51,7 +50,6 @@ $plantgram-theme: mat-light-theme(
     ),
   )
 );
-
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
@@ -60,7 +58,11 @@ $plantgram-theme: mat-light-theme(
 .material-icons {
   font-size: 24px;
   font-family: "Material Icons Outlined", "Material Icons";
-  .mat-badge-content {
-    font-family: "Roboto";
-  }
+}
+
+.mat-badge-content {
+  font-family: "Roboto";
+  background-color: none;
+  background: none;
+  color: rgba(0, 0, 0, 0.87);
 }

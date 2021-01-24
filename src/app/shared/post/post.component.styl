@@ -2,7 +2,55 @@
     background-image url('https://material.angular.io/assets/img/examples/shiba1.jpg')
     background-size cover
 
-.post-image
-    height 180px
-    background-size cover
-    background-position center
+mat-card
+    display inline-block
+    background-color #daf1e2
+    height 550px
+    width 100%
+    padding 0
+
+    a
+        text-decoration none
+
+    a:visited
+    a:hover
+    a:active
+        color inherit
+
+    mat-card-header
+        display flex
+        width 100%
+        flex-direction row
+        justify-content center
+        align-items center
+        background-color rgba(218, 241, 226, 0.3)
+
+    mat-card-actions
+        position absolute
+        display flex
+        width 100%
+        bottom 20px
+        flex-direction row
+        background-color rgba(218, 241, 226, 0.3)
+
+        .social-action
+            display flex
+
+        .read-action
+            display flex
+            width 100%
+            padding 0 30px
+            justify-content flex-end
+            align-items center
+
+.mat-fab
+    display flex
+    justify-content center
+    align-items center
+
+.image
+    height 100%
+    display inline-block
+    width 100%
+    background-size contain
+    background-repeat no-repeat

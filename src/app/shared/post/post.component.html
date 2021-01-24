@@ -1,22 +1,32 @@
-    <mat-card>
-        <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title><a [routerLink]="['/user', item.id]">{{item.user_name}}</a></mat-card-title>
-        <mat-card-subtitle>{{item.date_created}}</mat-card-subtitle>
-        </mat-card-header>
-        <div mat-card-image [style.background-image]="'url(' + item.image + ')'" alt="Photo of a Shiba Inu" class="post-image"></div>
-        <mat-card-content>
-        <p>
-            {{item.title}}
-        </p>
-        </mat-card-content>
-        <mat-card-content>
-            <p>
-                #tag1 #tag2 #tag3
-            </p>
-        </mat-card-content>
-        <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-        </mat-card-actions>
+    <mat-card>        
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title><a [routerLink]="['/user', item.id]">{{item.user_name}}</a></mat-card-title>               
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    <!-- {{item.title}} -->
+                </p>
+            </mat-card-content>  
+            <mar-card-content class="image" [style.background-image]="'url(' + item.image + ')'">
+                image content
+            </mar-card-content>          
+            <mat-card-actions>
+                <div class="social-action">            
+                    <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+                        <mat-icon>favorite</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+                        <mat-icon>favorite</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+                        <mat-icon>favorite</mat-icon>
+                    </button>
+                </div>
+                <div class="read-action">
+                    <button mat-raised-button color="primary">Read</button>
+                </div>
+            </mat-card-actions>
     </mat-card>
+
+    
