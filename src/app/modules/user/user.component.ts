@@ -26,6 +26,5 @@ export class UserComponent implements OnInit {
       this.user = new_mock.find((opt) => opt.id == this.id);     
     });
   }
-
-
+  
 }
