@@ -1,4 +1,38 @@
-<p>user works!</p>
-<a [routerLink]="['/explore']">Back to Explore</a>
-{{ id }}
-{{ user.user_name }}
+<section class="container">
+  <section class="user-section">
+    <section class="us-image">
+      <img src="{{user.image}}">
+    </section>
+    <section class="us-content">
+      <div class="c-user flex-evenly">
+        <div class="gap">
+          <span>{{user.first_name}}</span>
+          <span>{{user.last_name}}</span>
+        </div>
+        <span>
+          <button mat-raised-button color="primary">Follow</button>
+        </span>
+        <span>
+          <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </span>
+      </div>
+      <div class="c-data flex-evenly">
+        <span>{{user.posts.length}} posts</span>
+        <span>{{user.followers.length}} followers</span>
+        <span>{{user.following.length}} following</span>
+      </div>
+      <div class="c-description flex-evenly">
+        {{user.about}}
+      </div>
+    </section>
+  </section>
+  <mat-tab-group class="tab">
+    <mat-tab label="My posts">
+      <!-- <app-post *ngFor="let post of user.posts" [user]="post"></app-post>  -->
+    </mat-tab>
+    <mat-tab label="Shared"> Content 2 </mat-tab>
+    <mat-tab label="Garden"> Content 3 </mat-tab>
+  </mat-tab-group>  
+</section>

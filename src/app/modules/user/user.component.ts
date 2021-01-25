@@ -1,4 +1,4 @@
-import { mock_data } from 'src/assets/mock_data';
+import { new_mock } from '../../../assets/new_mock';
 
 import {
     Component,
@@ -15,6 +15,7 @@ export class UserComponent implements OnInit {
   id: any;
   request: any;
   user: any;
+  user_posts: any;
 
   constructor(private _Activatedroute: ActivatedRoute) {}
 
@@ -22,7 +23,9 @@ export class UserComponent implements OnInit {
     this.request = this._Activatedroute.paramMap.subscribe((params) => {
       this.id = params.get('id');
       console.log(this.id, 'ID');
-      this.user = mock_data.find((opt) => opt.id == this.id);
+      this.user = new_mock.find((opt) => opt.id == this.id);     
     });
   }
+
+
 }
