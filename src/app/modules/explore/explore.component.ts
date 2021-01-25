@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { mock_data } from '../../../assets/mock_data';
+import { new_mock } from '../../../assets/new_mock';
 
 @Component({
   selector: 'app-explore',
@@ -8,5 +8,5 @@ import { mock_data } from '../../../assets/mock_data';
   styleUrls: ['./explore.component.styl']
 })
 export class ExploreComponent {
-  posts = mock_data;
+  posts = new_mock;
 }

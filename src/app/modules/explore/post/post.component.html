@@ -2,21 +2,20 @@
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title
-      ><a [routerLink]="['/user', item.id]">{{
-        item.user_name
-      }}</a></mat-card-title
-    >
-    <mat-card-subtitle>{{ item.date_created }}</mat-card-subtitle>
+      ><a [routerLink]="['/user', user.id]">{{
+        user.first_name
+      }}</a>
+      </mat-card-title>
   </mat-card-header>
   <div
     mat-card-image
-    [style.background-image]="'url(' + item.image + ')'"
+    [style.background-image]="'url(' + user.image + ')'"
     alt="Photo of a Shiba Inu"
     class="post-image"
   ></div>
   <mat-card-content>
     <p>
-      {{ item.title }}
+      title
     </p>
   </mat-card-content>
   <mat-card-content>

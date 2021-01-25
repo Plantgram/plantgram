@@ -9,5 +9,5 @@ import {
   styleUrls: ['./post.component.styl']
 })
 export class PostComponent {
-  @Input() item: any;
+  @Input() user: any;
 }
