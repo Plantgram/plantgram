@@ -39,6 +39,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: 'test/api',
+    loadChildren: () =>
+      import('./test/api-test/api-test.module').then((m) => m.ApiTestModule),
+  },
   { path: '**', component: PageNotFoundComponent }, // Wildcard route for a 404 page
 ];
 

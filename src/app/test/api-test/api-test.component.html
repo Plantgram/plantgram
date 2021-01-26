@@ -1,0 +1,38 @@
+<section class="wrapper">
+  <div class="buttons" id="buttons">
+    <button mat-raised-button color="primary" (click)="GetUsers()">Get users</button>
+    <button mat-raised-button color="primary" (click)="GetPosts()">Get posts</button>   
+  </div>
+  <div id="console" class="console">
+    <table>
+      <caption>Users</caption>
+      <tr>
+        <th>id</th>
+        <th>user_id</th>
+        <th>created_at</th>
+      </tr>
+      <tr *ngFor="let user of users | async">
+        <td>{{user.id}}</td>
+        <td>{{user.user_id}}</td>
+        <td>{{user.created_at}}</td>
+      </tr>
+    </table>
+    <table>
+      <caption>Posts</caption>
+      <tr>
+        <th>id</th>
+        <th>user_id</th>
+        <th>title</th>
+        <th>description</th>
+        <th>created_at</th>
+      </tr>
+      <tr *ngFor="let post of posts | async">
+        <td>{{post.id}}</td>
+        <td>{{post.user_id}}</td>
+        <td>{{post.title}}</td>
+        <td>{{post.description}}</td>
+        <td>{{post.created_at}}</td>
+      </tr>
+    </table>
+  </div>
+</section>
