@@ -12,7 +12,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatTabsModule } from '@angular/material/tabs'; 
+import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
 
 import { MobileToolbarComponent } from './components/mobile-toolbar/mobile-toolbar.component';
@@ -31,7 +31,7 @@ const MATERIAL_MODULES = [
   MatSidenavModule,
   MatListModule,
   MatMenuModule,
-  MatTabsModule
+  MatTabsModule,
 ];
 
 @NgModule({
