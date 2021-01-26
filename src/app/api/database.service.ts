@@ -14,16 +14,14 @@ export class DatabaseService {
   }
 
   async getUsers() {
-    let { data, error } = await this.supabaseClient
+    return await this.supabaseClient
     .from('user_cred')
-    .select('*');  
-    return data;
+    .select('*');      
   }
 
   async getPosts() {
-    let { data, error } = await this.supabaseClient
+    return await this.supabaseClient
     .from('posts')
     .select('*');  
-    return data;
   }
 }

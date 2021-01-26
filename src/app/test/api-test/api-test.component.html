@@ -1,7 +1,7 @@
 <section class="wrapper">
   <div class="buttons" id="buttons">
-    <button mat-raised-button color="primary" (click)="GetUsers()">Get users</button>
-    <button mat-raised-button color="primary" (click)="GetPosts()">Get posts</button>   
+    <button mat-raised-button color="primary" (click)="getUsers()">Get users</button>
+    <button mat-raised-button color="primary" (click)="getPosts()">Get posts</button>   
   </div>
   <div id="console" class="console">
     <table>
@@ -11,7 +11,7 @@
         <th>user_id</th>
         <th>created_at</th>
       </tr>
-      <tr *ngFor="let user of users | async">
+      <tr *ngFor="let user of users">
         <td>{{user.id}}</td>
         <td>{{user.user_id}}</td>
         <td>{{user.created_at}}</td>
@@ -26,7 +26,7 @@
         <th>description</th>
         <th>created_at</th>
       </tr>
-      <tr *ngFor="let post of posts | async">
+      <tr *ngFor="let post of posts">
         <td>{{post.id}}</td>
         <td>{{post.user_id}}</td>
         <td>{{post.title}}</td>

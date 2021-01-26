@@ -16,21 +16,21 @@ export class ApiTestComponent {
     this.service = dbService; 
   }  
 
-  GetUsers() {
-    this.users = this.service.getUsers();
-    this.users.then (
-    (res: any) => {
-        return res;
-      }
-    );
+  async getUsers() {
+    let promise = await this.service.getUsers();
+    if(promise.error === null && promise.status === 200)
+       this.users = promise.data;
+    else
+      throw(promise.error)      
   }
 
-  GetPosts() {
-    this.posts = this.service.getPosts();
-    this.posts.then (
-      (res: any) => {
-        return res
-      }
-    );
+  async getPosts() {
+    try {
+      let promise = await this.service.getPosts();
+      console.log(promise.data)
+      this.posts = promise.data;
+    } catch (error) {
+      throw(error);
+    }
   }
 }
