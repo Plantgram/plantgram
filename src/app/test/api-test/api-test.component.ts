@@ -17,18 +17,18 @@ export class ApiTestComponent {
   }  
 
   GetUsers() {
-    this.users = this.service.getUsers()
+    this.users = this.service.getUsers();
     this.users.then (
-      res => {
+    (res: any) => {
         return res;
       }
     );
   }
 
   GetPosts() {
-    this.posts = this.service.getPosts()
+    this.posts = this.service.getPosts();
     this.posts.then (
-      res => {
+      (res: any) => {
         return res
       }
     );
