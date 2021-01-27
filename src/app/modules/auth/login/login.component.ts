@@ -8,6 +8,8 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 
+const NUMBER_OF_AVAILABLE_IMAGES = 4;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,6 +21,7 @@ export class LoginComponent {
   submitted = false;
   isPasswordVisible = false;
   loginError: any;
+  imageUrl: string;
 
   constructor(
     private accountService: AccountService,
@@ -29,6 +32,9 @@ export class LoginComponent {
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
+    this.imageUrl = `assets/login-images/plant-0${
+      Math.floor(Math.random() * NUMBER_OF_AVAILABLE_IMAGES) + 1
+    }.jpg`;
   }
 
   get email() {

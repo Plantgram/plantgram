@@ -1,9 +1,12 @@
-<main class="container">
-  <div class="image-area">
-    <img src="assets/plants-login-1.jpg" />
-  </div>
+<main class="container" gdColumns="1fr" gdColumns.gt-sm="1fr 1fr">
+  <div
+    fxHide
+    fxShow.gt-sm="true"
+    class="image-container"
+    [style.background-image]="'url(' + imageUrl + ')'"
+  ></div>
 
-  <section>
+  <section class="login-container">
     <div class="title" color="primary">
       <app-plantgram-logo size="3rem"></app-plantgram-logo>
       <span color="primary">Plantgram</span>
@@ -16,7 +19,7 @@
 
       <mat-card-content>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <mat-form-field appearance="fill">
+          <mat-form-field class="form-field" appearance="fill">
             <mat-label>Enter your email</mat-label>
             <input
               matInput
@@ -27,7 +30,7 @@
             <mat-error *ngIf="email?.errors">You must enter a value</mat-error>
           </mat-form-field>
 
-          <mat-form-field appearance="fill">
+          <mat-form-field class="form-field" appearance="fill">
             <mat-label>Enter your password</mat-label>
             <input
               matInput
@@ -50,15 +53,16 @@
 
           <mat-error *ngIf="loginError">Invalid Email or Password</mat-error>
 
-          <div><button mat-raised-button color="primary">Login</button></div>
+          <button class="form-field" mat-raised-button color="primary">
+            Login
+          </button>
         </form>
 
-        <div class="separator" color="primary">OR</div>
+        <div class="separator form-field" color="primary">OR</div>
 
-        <mat-card>
-          Don't have an account?
-          <a href="./auth/signup" class="link">Create one!</a>
-        </mat-card>
+        <a class="form-field" mat-button href="./auth/signup" color="primary"
+          >Register</a
+        >
       </mat-card-content>
     </mat-card>
   </section>
