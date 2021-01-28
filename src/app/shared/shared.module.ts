@@ -13,11 +13,18 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatExpansionModule } from '@angular/material/expansion';  
+import { MatChipsModule } from '@angular/material/chips'; 
 import { RouterModule } from '@angular/router';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { FormsModule } from '@angular/forms';
 
 import { MobileToolbarComponent } from './components/mobile-toolbar/mobile-toolbar.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PlantgramLogoComponent } from './components/plantgram-logo/plantgram-logo.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
 
 const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -32,6 +39,12 @@ const MATERIAL_MODULES = [
   MatListModule,
   MatMenuModule,
   MatTabsModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatChipsModule,
+  ReactiveFormsModule,
+  NgxDropzoneModule,
+  FormsModule,
 ];
 
 @NgModule({
