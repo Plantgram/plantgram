@@ -23,13 +23,11 @@ import { MatChipsModule } from '@angular/material/chips';
 
 import { RouterModule } from '@angular/router';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-import { FormsModule } from '@angular/forms';
 
 import { MobileToolbarComponent } from './components/mobile-toolbar/mobile-toolbar.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PlantgramLogoComponent } from './components/plantgram-logo/plantgram-logo.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
 
 const MATERIAL_MODULES = [
   MatToolbarModule,
