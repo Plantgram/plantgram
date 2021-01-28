@@ -1,3 +1,4 @@
+import { AccountService } from 'src/app/core/services/account.service';
 import { environment } from 'src/environments/environment';
 import { NewPostComponent } from '../new-post/new-post.component';
 
@@ -13,18 +14,21 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-explore',
   templateUrl: './explore.component.html',
-  styleUrls: ['./explore.component.styl']
+  styleUrls: ['./explore.component.styl'],
 })
-export class ExploreComponent implements OnInit{
+export class ExploreComponent implements OnInit {
   posts = new_mock;
   supabaseClient: any;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(private accountService: AccountService, public dialog: MatDialog) {}
 
-  ngOnInit(){
+  ngOnInit() {
+
     // Create a single supabase client for interacting with your database
-    const {url, key} = environment.supabase;
+    const { url, key } = environment.supabase;
     this.supabaseClient = createClient(url, key);
+
+    console.log(this.accountService.currentUser, 'is logged in');
   }
 
   openNewPostDialog(): void {
@@ -40,7 +44,7 @@ export class ExploreComponent implements OnInit{
   async onGetPosts() {
     const { data, error } = await this.supabaseClient
       .from('posts')
-      .select(`id, created_at, user_id, title, description`)
-    console.log(data, error,"supabase")
+      .select(`id, created_at, user_id, title, description`);
+    console.log(data, error, 'supabase');
   }
 }

@@ -1,42 +1,62 @@
-import { environment } from 'src/environments/environment';
+import { AccountService } from 'src/app/core/services/account.service';
 
 import { Component } from '@angular/core';
 import {
-    FormControl,
+    FormBuilder,
+    FormGroup,
     Validators,
 } from '@angular/forms';
-import { createClient } from '@supabase/supabase-js';
+import { Router } from '@angular/router';
+
+const NUMBER_OF_AVAILABLE_IMAGES = 4;
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.styl']
+  styleUrls: ['./login.component.styl'],
 })
 export class LoginComponent {
-  password = new FormControl('', [Validators.required]);
-  email = new FormControl('', [Validators.required, Validators.email]);
-  supabaseClient: any;
-  isVisible = false;
+  form: FormGroup;
+  loading = false;
+  submitted = false;
+  isPasswordVisible = false;
+  loginError: any;
+  imageUrl: string;
 
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+  constructor(
+    private accountService: AccountService,
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {
+    this.form = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+    this.imageUrl = `assets/login-images/plant-0${
+      Math.floor(Math.random() * NUMBER_OF_AVAILABLE_IMAGES) + 1
+    }.jpg`;
   }
 
-  ngOnInit(){
-    const {url, key} = environment.supabase;
-    this.supabaseClient = createClient(url, key);
+  get email() {
+    return this.form.get('email');
   }
 
-  async onSignIn(email='anyname@codemonkey.wtf', password='123'){
-    if(email&&password){
-      let { user, error } = await this.supabaseClient.auth.signIn({
-        email,
-        password
-      })
-      console.log(user, error, "signup")
+  async onSubmit() {
+    this.submitted = true;
+    this.loginError = null;
+
+    if (this.form.invalid) {
+      return;
     }
+    this.loading = true;
+
+    const { user, error } = await this.accountService.signIn(
+      this.form.getRawValue()
+    );
+
+    if (!error && user) {
+      this.router.navigateByUrl('/');
+    }
+    this.loginError = error;
   }
 }
