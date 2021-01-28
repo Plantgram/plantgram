@@ -32,7 +32,7 @@ export class DatabaseService {
       .from('posts')
       .insert([
         { 
-          user_id: uuidv4() // TODO: FETCH AUTHENTHICATED USER_ID - CURRENTLY NEW UUID IS FOR TESTING ONLY,
+          user_id: uuidv4(), // TODO: FETCH AUTHENTHICATED USER_ID - CURRENTLY NEW UUID IS FOR TESTING ONLY,
           title: data.title, 
           description: data.description,
           tags: {tagsList: data.tags},
