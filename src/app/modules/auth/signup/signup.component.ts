@@ -1,53 +1,82 @@
-import { environment } from 'src/environments/environment';
-import { DatabaseService } from "../../../api/database.service";
+import { AccountService } from 'src/app/core/services/account.service';
 
+import { Component } from '@angular/core';
 import {
-    Component,
-    OnInit,
-} from '@angular/core';
-import {
-    FormControl,
+    FormBuilder,
+    FormGroup,
     Validators,
 } from '@angular/forms';
-import { createClient } from '@supabase/supabase-js';
+import { Router } from '@angular/router';
 
+function matchPassword(group: FormGroup) {
+  const password = group.get('password')?.value;
+  const confirmPassword = group.get('confirmPassword')?.value;
+
+  // TODO check for touched/dirty controls
+  return password === confirmPassword ? null : { passwordsNotMatching: true };
+}
+
+const NUMBER_OF_AVAILABLE_IMAGES = 4;
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.styl'],
 })
 export class SignupComponent {
-  password = new FormControl('', [Validators.required]);
-  email = new FormControl('', [Validators.required, Validators.email]);
-  users: any;
-  supabaseClient: any;
-  isVisible = false;
+  form: FormGroup;
+  loading = false;
+  submitted = false;
+  isPasswordVisible = false;
+  signupError: any;
+  imageUrl: string;
 
-  constructor(private databaseService: DatabaseService) {
-    this.supabaseClient = databaseService;
-  }
-
-  // ngOnInit() {
-  //   const { url, key } = environment.supabase;
-  //   this.supabaseClient = createClient(url, key);
-  // }
-
-  GetUSers() {
-    this.users = this.supabaseClient.getUsers();
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private accountService: AccountService
+  ) {
+    this.form = this.formBuilder.group(
+      {
+        firstname: [''],
+        lastname: [''],
+        email: ['', Validators.required],
+        password: ['', Validators.required],
+        confirmPassword: [''],
+      },
+      { validators: matchPassword }
+    );
+    this.imageUrl = `assets/login-images/plant-0${
+      Math.floor(Math.random() * NUMBER_OF_AVAILABLE_IMAGES) + 1
+    }.jpg`;
   }
 
   getErrorMessage() {
-    if (this.email.hasError('required')) {
+    const email = this.form.get('email');
+    if (email && email.hasError('required')) {
       return 'You must enter a value';
     }
-    return this.email.hasError('email') ? 'Not a valid email' : '';
+    if (email && email.hasError('email')) {
+      return 'Not a valid email';
+    }
+    return '';
   }
 
-  // async onSignUp() {
-  //   let { user, error } = await this.supabaseClient.auth.signUp({
-  //     email: 'anyname@codemonkey.wtf',
-  //     password: '123',
-  //   });
-  //   console.log(user, error, 'signup');
-  // }
+  async onSubmit() {
+    this.submitted = true;
+    this.signupError = null;
+
+    if (this.form.invalid) {
+      return;
+    }
+    this.loading = true;
+
+    const { user, error } = await this.accountService.register(
+      this.form.getRawValue()
+    );
+
+    if (!error && user) {
+      this.router.navigateByUrl('/');
+    }
+    this.signupError = error;
+  }
 }

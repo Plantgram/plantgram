@@ -23,18 +23,23 @@ export class AccountService {
     return this.userSubject.value;
   }
 
-  async signIn(options: {
-    email: string;
-    password: string;
+  async signIn(credentials: {
+    email?: string;
+    password?: string;
     provider?: 'github' | 'google';
   }) {
-    const { user, error } = await this.supabaseClient.auth.signIn(options);
+    const { user, error } = await this.supabaseClient.auth.signIn(credentials);
     this.userSubject.next(user);
     return { user, error };
   }
 
-  register() {
-    // TODO
+  async register(credentials: {
+    email: string;
+    password: string;
+  }) {
+    const { user, error } = await this.supabaseClient.auth.signUp(credentials);
+    this.userSubject.next(user);
+    return { user, error };
   }
 
   signOut() {
