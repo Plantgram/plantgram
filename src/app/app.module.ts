@@ -10,10 +10,12 @@ import { ExploreModule } from './modules/explore/explore.module';
 import { SettingsModule } from './modules/settings/settings.module';
 import { UserModule } from './modules/user/user.module';
 import { SharedModule } from './shared/shared.module';
+import { NewPostComponent } from './modules/new-post/new-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NewPostComponent,
   ],
   imports: [
     BrowserModule,
