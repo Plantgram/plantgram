@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class DatabaseService {
   supabaseClient: SupabaseClient;
+  private userData: any;
   
   constructor() {
     const {url, key} = environment.supabase;
@@ -18,6 +19,14 @@ export class DatabaseService {
     return await this.supabaseClient
     .from('user_cred')
     .select('*');      
+  }
+
+  async getUserProfile(id: any) {
+    console.log(id);
+    return await this.supabaseClient
+    .from('user_profile')
+    .select('first_name, last_name, about, user_image_path')
+    .eq('user_id', id);
   }
 
   async getPosts() {

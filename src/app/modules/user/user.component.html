@@ -1,7 +1,7 @@
 <section class="container">
   <section class="user-section">
     <section class="us-image">
-      <img src="{{user.image}}">
+      <img src="{{user.user_image_path}}">
     </section>
     <section class="us-content">
       <div class="c-user">
@@ -21,9 +21,12 @@
         </div>
       </div>
       <div class="c-data flex-evenly">
-        <span><strong class="font">{{user.posts.length}}</strong> posts</span>
+        <!-- <span><strong class="font">{{user.posts.length}}</strong> posts</span>
         <span><strong class="font">{{user.followers.length}}</strong> followers</span>
-        <span><strong class="font">{{user.following.length}}</strong> following</span>
+        <span><strong class="font">{{user.following.length}}</strong> following</span> -->
+        <span><strong class="font">10</strong> posts</span>
+        <span><strong class="font">10</strong> followers</span>
+        <span><strong class="font">10</strong> following</span>
       </div>
       <div class="c-description flex-evenly padding-20">
         {{user.about}}

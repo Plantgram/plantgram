@@ -35,11 +35,37 @@ export class AccountService {
   }) {
     const { user, error } = await this.supabaseClient.auth.signIn(credentials);
     this.userSubject.next(user);
+    console.log(user);
     return { user, error };
   }
 
-  async register(credentials: { email: string; password: string }) {
+  async register(credentials: {
+    firstname: string;
+    lastname: string;
+    email: string; 
+    password: string 
+  }) {
+    // Register a user inside private user table
     const { user, error } = await this.supabaseClient.auth.signUp(credentials);
+
+    // Register a user inside public user table - that can be used for relations between tables
+    await this.supabaseClient
+    .from('users')
+    .insert([
+      { id: user?.id },
+    ]);
+
+    await this.supabaseClient
+    .from('user_profile')
+    .insert([
+      { 
+        user_id: user?.id,
+        first_name: credentials.firstname,
+        last_name: credentials.lastname
+       },
+    ]);  
+
+    // Return user and log him in
     this.userSubject.next(user);
     return { user, error };
   }
