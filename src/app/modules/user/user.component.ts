@@ -1,4 +1,6 @@
 import { new_mock } from '../../../assets/new_mock';
+import { AccountService } from '../../core/services/account.service';
+import { DatabaseService } from '../../api/database.service';
 
 import {
     Component,
@@ -17,14 +19,18 @@ export class UserComponent implements OnInit {
   user: any;
   user_posts: any;
 
-  constructor(private _Activatedroute: ActivatedRoute) {}
+  constructor(private _Activatedroute: ActivatedRoute, private _accountService: AccountService, private _dbService: DatabaseService) {  }
 
   ngOnInit(): void {
-    this.request = this._Activatedroute.paramMap.subscribe((params) => {
-      this.id = params.get('id');
-      console.log(this.id, 'ID');
-      this.user = new_mock.find((opt) => opt.id == this.id);     
+    this.request = this._Activatedroute.paramMap.subscribe(async () => {          
+      this.id = this._accountService.currentUser?.id;
+      this.user = await this.getUserProfile();    
     });
+  }
+
+  async getUserProfile() {
+    let req = await this._dbService.getUserProfile(this.id);   
+    return req.body[0];
   }
   
 }

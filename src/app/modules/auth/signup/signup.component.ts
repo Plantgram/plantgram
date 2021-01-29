@@ -64,11 +64,9 @@ export class SignupComponent {
   async onSubmit() {
     this.submitted = true;
     this.signupError = null;
-
-    if (this.form.invalid) {
-      return;
-    }
     this.loading = true;
+
+    if (this.form.invalid) return;    
 
     const { user, error } = await this.accountService.register(
       this.form.getRawValue()
