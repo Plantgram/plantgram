@@ -8,6 +8,13 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+interface User {
+  first_name: string;
+  last_name: string;
+  about: string;
+  user_image_path: string;
+}
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -30,7 +37,7 @@ export class UserComponent implements OnInit {
 
   async getUserProfile() {
     let req = await this._dbService.getUserProfile(this.id);   
-    return req.body[0];
+    return <User>req.body![0];
   }
   
 }
