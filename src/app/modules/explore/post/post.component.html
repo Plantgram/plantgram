@@ -1,4 +1,4 @@
-<mat-card>
+<!-- <mat-card>
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title
@@ -7,12 +7,9 @@
       }}</a>
       </mat-card-title>
   </mat-card-header>
-  <div
-    mat-card-image
-    [style.background-image]="'url(' + user.image + ')'"
-    alt="Photo of a Shiba Inu"
-    class="post-image"
-  ></div>
+  <div>
+    <img src="{{user.image}}" alt="Photo of a Shiba Inu">
+  </div>
   <mat-card-content>
     <p>
       title
@@ -25,4 +22,29 @@
     <button mat-button>LIKE</button>
     <button mat-button>SHARE</button>
   </mat-card-actions>
-</mat-card>
+</mat-card> -->
+<!-- <div class="mat-card">
+  <img src="{{user.image}}" alt="Photo of a Shiba Inu">
+  Hello
+</div> -->
+
+
+<div class="container">
+  <img src="{{user.image}}" alt="Norway" class="post-image">
+  <div class="text-block">
+    <img src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="Photo of a Shiba Inu" class="user-image">
+    <span>{{user.first_name}} {{user.last_name}}</span>
+    <div class="actions-block">
+      <button mat-fab color="primary" aria-label="Example icon button with a home icon">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-fab color="primary" aria-label="Example icon button with a home icon">
+        <mat-icon>share</mat-icon>
+      </button>
+      <button mat-fab color="primary" aria-label="Example icon button with a home icon">
+        <mat-icon>thumb_up</mat-icon>
+      </button>
+    </div>
+  </div>
+</div> 
+

@@ -1,6 +1,7 @@
 import { AccountService } from 'src/app/core/services/account.service';
 import { environment } from 'src/environments/environment';
 import { NewPostComponent } from '../new-post/new-post.component';
+import { NgxMasonryOptions } from 'ngx-masonry';
 
 import {
     Component,
@@ -19,6 +20,14 @@ import { MatDialog } from '@angular/material/dialog';
 export class ExploreComponent implements OnInit {
   posts = new_mock;
   supabaseClient: any;
+
+  public myOptions: NgxMasonryOptions = {
+    gutter: 10,
+    resize: true,
+    percentPosition: true,
+    // columnWidth: '.grid-sizer',
+    itemSelector: '.grid-item',
+  };
 
   constructor(private accountService: AccountService, public dialog: MatDialog) {}
 

@@ -38,7 +38,10 @@
   </mat-drawer>
 
   <main class="sidenav-content">
-    <section
+    <ngx-masonry [options]="myOptions">
+      <app-post *ngFor="let post of posts" [user]="post" ngxMasonryItem class="masonry-item grid-item" ></app-post>
+    </ngx-masonry>
+    <!-- <section
       class="explore"
       gdColumns="1fr"
       gdColumns.sm="1fr 1fr"
@@ -47,6 +50,6 @@
       gdGap="60px 30px"
     >
       <app-post *ngFor="let post of posts" [user]="post"></app-post>
-    </section>
+    </section> -->
   </main>
 </mat-drawer-container>
