@@ -7,14 +7,13 @@ import { DatabaseService } from '../../core/services/database.service';
 
 import { new_mock } from '../../../assets/new_mock';
 import { NewPostComponent } from '../new-post/new-post.component';
-import { SupabaseClientInit } from 'src/app/core/services/client-init.service';
 
 @Component({
   selector: 'app-explore',
   templateUrl: './explore.component.html',
   styleUrls: ['./explore.component.styl'],
 })
-export class ExploreComponent implements OnInit {
+export class ExploreComponent {
   posts = new_mock;
   client: any;
 
@@ -23,11 +22,7 @@ export class ExploreComponent implements OnInit {
   };
 
   constructor(private dbService: DatabaseService, public dialog: MatDialog) {
-    this.client = this.dbService;
-  }
-
-  ngOnInit() {
-    console.log(this.client.currentUser.id);
+    this.client = this.dbService;   
   }
 
   openNewPostDialog(): void {
