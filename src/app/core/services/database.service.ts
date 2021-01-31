@@ -1,45 +1,38 @@
-import { environment } from 'src/environments/environment';
-
 import { Injectable } from '@angular/core';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { AccountService } from './account.service';
+import { SupabaseClientInit } from './client-init.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DatabaseService {
-  supabaseClient: SupabaseClient;
-  private userData: any;
 
-  constructor() {
-    const { url, key } = environment.supabase;
-    this.supabaseClient = createClient(url, key);
-  }
+export class DatabaseService extends AccountService {
 
   //#region GET API
   async getUsers() {
-    return await this.supabaseClient.from('user_cred').select('*');
+    return await this.client.from('user_cred').select('*');
   }
 
   async getUserProfile(id: any) {
-    return await this.supabaseClient
+    return await this.client
       .from('user_profile')
       .select('first_name, last_name, about, user_image_path')
       .eq('user_id', id);
   }
 
   async getAllPosts() {
-    return await this.supabaseClient.from('posts').select('*');
+    return await this.client.from('posts').select('*');
   }
 
   async getUserPosts(userID: any) {
-    return await this.supabaseClient.from('posts').select('*').eq('user_id', userID);
+    return await this.client.from('posts').select('*').eq('user_id', userID);
   }
   //#endregion
 
   //#region POST/INSERT API
   async insertPost(data: any, userID: any) {
     try {
-      await this.supabaseClient.from('posts').insert([
+      await this.client.from('posts').insert([
         {
           user_id: userID,
           title: data.title,
@@ -55,7 +48,7 @@ export class DatabaseService {
 
   async subscribe(subscriberID: any, subscribedToID: any) {
     try {
-      await this.supabaseClient.from('user_subscription').insert([
+      await this.client.from('user_subscription').insert([
         {
           subscriber_user_id: subscriberID,
           subscribed_to_user_id: subscribedToID,
@@ -68,7 +61,7 @@ export class DatabaseService {
 
   async bookmark(postID: any, subscriberID: any) {
     try {
-      await this.supabaseClient.from('user_subscription').insert([
+      await this.client.from('user_subscription').insert([
         {
           post_id: postID,
           user_id: subscriberID,
@@ -87,7 +80,7 @@ export class DatabaseService {
   //#region POST/DELETE API
   async deletePost(postID: any, userID: any) {
     try {
-      await this.supabaseClient.from('posts').delete().eq('id', postID).eq('user_id', userID);
+      await this.client.from('posts').delete().eq('id', postID).eq('user_id', userID);
     } catch (error) {
       console.log(error);
     }
@@ -95,7 +88,7 @@ export class DatabaseService {
 
   async unSubscribe(subscriberID: any, subscribedToID: any) {
     try {
-      await this.supabaseClient
+      await this.client
         .from('user_subscription')
         .delete()
         .eq('subscriber_user_id', subscriberID)
@@ -107,7 +100,7 @@ export class DatabaseService {
 
   async removeBookmark(postID: any, subscriberID: any) {
     try {
-      await this.supabaseClient.from('user_subscription').delete().eq('post_id', postID).eq('user_id', subscriberID);
+      await this.client.from('user_subscription').delete().eq('post_id', postID).eq('user_id', subscriberID);
     } catch (error) {
       console.log(error);
     }

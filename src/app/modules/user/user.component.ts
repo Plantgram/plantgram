@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { DatabaseService } from '../../api/database.service';
+import { DatabaseService } from '../../core/services/database.service';
 import { AccountService } from '../../core/services/account.service';
 
 interface User {

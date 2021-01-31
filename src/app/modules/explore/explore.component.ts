@@ -1,13 +1,13 @@
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { AccountService } from 'src/app/core/services/account.service';
-import { environment } from 'src/environments/environment';
 
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { createClient } from '@supabase/supabase-js';
+import { DatabaseService } from '../../core/services/database.service';
 
 import { new_mock } from '../../../assets/new_mock';
 import { NewPostComponent } from '../new-post/new-post.component';
+import { SupabaseClientInit } from 'src/app/core/services/client-init.service';
 
 @Component({
   selector: 'app-explore',
@@ -16,20 +16,18 @@ import { NewPostComponent } from '../new-post/new-post.component';
 })
 export class ExploreComponent implements OnInit {
   posts = new_mock;
-  supabaseClient: any;
+  client: any;
 
   public myOptions: NgxMasonryOptions = {
     gutter: 20,
   };
 
-  constructor(private accountService: AccountService, public dialog: MatDialog) {}
+  constructor(private dbService: DatabaseService, public dialog: MatDialog) {
+    this.client = this.dbService;
+  }
 
   ngOnInit() {
-    // Create a single supabase client for interacting with your database
-    const { url, key } = environment.supabase;
-    this.supabaseClient = createClient(url, key);
-
-    console.log(this.accountService.currentUser, 'is logged in');
+    console.log(this.client.currentUser.id);
   }
 
   openNewPostDialog(): void {
@@ -43,7 +41,7 @@ export class ExploreComponent implements OnInit {
   }
 
   async onGetPosts() {
-    const { data, error } = await this.supabaseClient
+    const { data, error } = await this.client
       .from('posts')
       .select(`id, created_at, user_id, title, description`);
     console.log(data, error, 'supabase');
