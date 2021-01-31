@@ -29,7 +29,7 @@ export class LoginComponent {
     private router: Router
   ) {
     this.form = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', Validators.required, Validators.email],
       password: ['', Validators.required],
     });
     this.imageUrl = `assets/login-images/plant-0${

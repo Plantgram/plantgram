@@ -1,16 +1,16 @@
+import { NgxMasonryOptions } from 'ngx-masonry';
 import { AccountService } from 'src/app/core/services/account.service';
 import { environment } from 'src/environments/environment';
-import { NewPostComponent } from '../new-post/new-post.component';
-import { NgxMasonryOptions } from 'ngx-masonry';
 
 import {
     Component,
     OnInit,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { createClient } from '@supabase/supabase-js';
 
 import { new_mock } from '../../../assets/new_mock';
-import { MatDialog } from '@angular/material/dialog';
+import { NewPostComponent } from '../new-post/new-post.component';
 
 @Component({
   selector: 'app-explore',
@@ -22,17 +22,15 @@ export class ExploreComponent implements OnInit {
   supabaseClient: any;
 
   public myOptions: NgxMasonryOptions = {
-    gutter: 10,
-    resize: true,
-    percentPosition: true,
-    // columnWidth: '.grid-sizer',
-    itemSelector: '.grid-item',
+    gutter: 20,
   };
 
-  constructor(private accountService: AccountService, public dialog: MatDialog) {}
+  constructor(
+    private accountService: AccountService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
-
     // Create a single supabase client for interacting with your database
     const { url, key } = environment.supabase;
     this.supabaseClient = createClient(url, key);
@@ -45,7 +43,7 @@ export class ExploreComponent implements OnInit {
       width: '30%',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
     });
   }
