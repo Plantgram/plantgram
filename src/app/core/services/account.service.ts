@@ -9,10 +9,9 @@ export class AccountService {
   client: any;
   private userSubject: BehaviorSubject<User | null>;
   public readonly currentUser$: Observable<User | null>;
-
   constructor(private _client: SupabaseClientInit ) {
     this.client = this._client.supabaseClient;
-    this.userSubject = new BehaviorSubject(this.client.auth.user());
+    this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('supabase.auth.token')).currentSession.user);
     this.currentUser$ = this.userSubject.asObservable();
   }
 
