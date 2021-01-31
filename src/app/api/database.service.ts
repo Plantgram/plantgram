@@ -1,6 +1,7 @@
+import { environment } from 'src/environments/environment';
+
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,6 @@ export class DatabaseService {
   }
 
   async getUserProfile(id: any) {
-    console.log(id);
     return await this.supabaseClient
       .from('user_profile')
       .select('first_name, last_name, about, user_image_path')

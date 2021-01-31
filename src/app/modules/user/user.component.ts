@@ -37,6 +37,6 @@ export class UserComponent implements OnInit {
 
   async getUserProfile() {
     const req = await this.dbService.getUserProfile(this.id);
-    return req && Array.isArray(req) && req.body[0];
+    return req?.body && req.body[0];
   }
 }
