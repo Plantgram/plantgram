@@ -1,10 +1,10 @@
 import { AccountService } from 'src/app/core/services/account.service';
 
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-function matchPassword(group: FormGroup) {
+function matchPassword(group: AbstractControl) {
   const password = group.get('password')?.value;
   const confirmPassword = group.get('confirmPassword')?.value;
 
@@ -56,7 +56,9 @@ export class SignupComponent {
     this.signupError = null;
     this.loading = true;
 
-    if (this.form.invalid) return;
+    if (this.form.invalid) {
+      return;
+    }
 
     const { user, error } = await this.accountService.register(this.form.getRawValue());
 

@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component, Input } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { FormBuilder, FormControl, FormGroup, NgForm } from '@angular/forms';
+
 import { DatabaseService } from '../../api/database.service';
 
 export interface Tag {
@@ -13,8 +14,9 @@ export interface Tag {
   templateUrl: './new-post.component.html',
   styleUrls: ['./new-post.component.styl'],
 })
-export class NewPostComponent implements OnInit {
-  service: any;
+export class NewPostComponent {
+  @Input() size = '24px';
+
   visible = true;
   selectable = true;
   removable = true;
@@ -24,13 +26,14 @@ export class NewPostComponent implements OnInit {
   files: File[] = [];
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  @Input() size = '24px';
+  postForm = new FormGroup({
+    title: new FormControl(''),
+    description: new FormControl(''),
+    tags: new FormControl(this.tags),
+    images: new FormControl(this.files),
+  });
 
-  constructor(private dbService: DatabaseService) {
-    this.service = dbService;
-  }
-
-  ngOnInit(): void {}
+  constructor(private dbService: DatabaseService) {}
 
   addTag(event: MatChipInputEvent): void {
     const input = event.input;
@@ -60,13 +63,6 @@ export class NewPostComponent implements OnInit {
 
   onFormSubmit() {
     console.log(this.postForm);
-    this.service.insertPost(this.postForm.value);
+    this.dbService.insertPost(this.postForm.value, ''); // FIXME: pass userid
   }
-
-  postForm = new FormGroup({
-    title: new FormControl(''),
-    description: new FormControl(''),
-    tags: new FormControl(this.tags),
-    images: new FormControl(this.files),
-  });
 }

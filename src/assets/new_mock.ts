@@ -1,3 +1,4 @@
+/* tslint:disable */
 export const new_mock = [
   {
     id: 1,
