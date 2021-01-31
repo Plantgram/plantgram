@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material/chips';
-import { FormBuilder, FormControl, FormGroup, NgForm } from "@angular/forms";
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component, Input } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
+
 import { DatabaseService } from '../../api/database.service';
 
 export interface Tag {
@@ -11,11 +12,11 @@ export interface Tag {
 @Component({
   selector: 'app-new-post',
   templateUrl: './new-post.component.html',
-  styleUrls: ['./new-post.component.styl']
+  styleUrls: ['./new-post.component.styl'],
 })
+export class NewPostComponent {
+  @Input() size = '24px';
 
-export class NewPostComponent implements OnInit {
-  service: any;
   visible = true;
   selectable = true;
   removable = true;
@@ -25,19 +26,20 @@ export class NewPostComponent implements OnInit {
   files: File[] = [];
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  @Input() size = '24px';
+  postForm = new FormGroup({
+    title: new FormControl(''),
+    description: new FormControl(''),
+    tags: new FormControl(this.tags),
+    images: new FormControl(this.files),
+  });
 
-  constructor(private dbService: DatabaseService) {
-    this.service = dbService; 
-  }  
-
-  ngOnInit(): void { }  
+  constructor(private dbService: DatabaseService) {}
 
   addTag(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
     if ((value || '').trim()) {
-      this.tags.push({name: value.trim()});
+      this.tags.push({ name: value.trim() });
     }
     if (input) {
       input.value = '';
@@ -49,26 +51,18 @@ export class NewPostComponent implements OnInit {
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
-  } 
+  }
 
-  onSelectImage(event: any) {    
+  onSelectImage(event: any) {
     this.files.push(...event.addedFiles);
   }
-  
-  onRemoveImage(event: any) {    
+
+  onRemoveImage(event: any) {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
-  onFormSubmit() {    
+  onFormSubmit() {
     console.log(this.postForm);
-    this.service.insertPost(this.postForm.value);
+    this.dbService.insertPost(this.postForm.value, ''); // FIXME: pass userid
   }
-
-  postForm = new FormGroup({
-    title: new FormControl(''),
-    description: new FormControl(''),
-    tags: new FormControl(this.tags),
-    images: new FormControl(this.files),
-  });
-
 }

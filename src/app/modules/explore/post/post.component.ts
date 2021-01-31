@@ -1,12 +1,9 @@
-import {
-    Component,
-    Input,
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.styl']
+  styleUrls: ['./post.component.styl'],
 })
 export class PostComponent {
   @Input() user: any;

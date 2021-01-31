@@ -13,10 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { NewPostComponent } from './modules/new-post/new-post.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NewPostComponent,
-  ],
+  declarations: [AppComponent, NewPostComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,13 +22,15 @@ import { NewPostComponent } from './modules/new-post/new-post.component';
     ExploreModule,
     UserModule,
     SettingsModule,
-    SharedModule
+    SharedModule,
   ],
-  providers: [{
-    provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-    useValue: { appearance: 'fill' },
-  }],
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'fill' },
+    },
+  ],
   bootstrap: [AppComponent],
-  exports: []
+  exports: [],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,10 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {
-    FormsModule,
-    ReactiveFormsModule,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -18,8 +15,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatExpansionModule } from '@angular/material/expansion';  
-import { MatChipsModule } from '@angular/material/chips'; 
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { RouterModule } from '@angular/router';
 import { NgxDropzoneModule } from 'ngx-dropzone';
@@ -28,7 +25,6 @@ import { NgxMasonryModule } from 'ngx-masonry';
 import { MobileToolbarComponent } from './components/mobile-toolbar/mobile-toolbar.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PlantgramLogoComponent } from './components/plantgram-logo/plantgram-logo.component';
-
 
 const MATERIAL_MODULES = [
   MatToolbarModule,
@@ -53,11 +49,7 @@ const MATERIAL_MODULES = [
 ];
 
 @NgModule({
-  declarations: [
-    PlantgramLogoComponent,
-    MobileToolbarComponent,
-    PageNotFoundComponent,
-  ],
+  declarations: [PlantgramLogoComponent, MobileToolbarComponent, PageNotFoundComponent],
   imports: [RouterModule, CommonModule, ...MATERIAL_MODULES],
   exports: [
     CommonModule,

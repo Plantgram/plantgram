@@ -1,13 +1,13 @@
 <section class="container">
   <section class="user-section">
     <section class="us-image">
-      <img src="{{user.user_image_path}}">
+      <img src="{{ user.user_image_path }}" />
     </section>
     <section class="us-content">
       <div class="c-user">
         <div class="gap">
-          <span>{{user.first_name}}</span>
-          <span>{{user.last_name}}</span>
+          <span>{{ user.first_name }}</span>
+          <span>{{ user.last_name }}</span>
         </div>
         <div class="c-actions">
           <span>
@@ -29,7 +29,7 @@
         <span><strong class="font">10</strong> following</span>
       </div>
       <div class="c-description flex-evenly padding-20">
-        {{user.about}}
+        {{ user.about }}
       </div>
     </section>
   </section>
@@ -39,5 +39,5 @@
     </mat-tab>
     <mat-tab label="Shared plants"> Content 2 </mat-tab>
     <mat-tab label="Garden"> Content 3 </mat-tab>
-  </mat-tab-group>  
+  </mat-tab-group>
 </section>

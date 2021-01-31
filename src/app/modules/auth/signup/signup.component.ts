@@ -1,14 +1,10 @@
 import { AccountService } from 'src/app/core/services/account.service';
 
 import { Component } from '@angular/core';
-import {
-    FormBuilder,
-    FormGroup,
-    Validators,
-} from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-function matchPassword(group: FormGroup) {
+function matchPassword(group: AbstractControl) {
   const password = group.get('password')?.value;
   const confirmPassword = group.get('confirmPassword')?.value;
 
@@ -30,11 +26,7 @@ export class SignupComponent {
   signupError: any;
   imageUrl: string;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private accountService: AccountService
-  ) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private accountService: AccountService) {
     this.form = this.formBuilder.group(
       {
         firstname: [''],
@@ -45,9 +37,7 @@ export class SignupComponent {
       },
       { validators: matchPassword }
     );
-    this.imageUrl = `assets/login-images/plant-0${
-      Math.floor(Math.random() * NUMBER_OF_AVAILABLE_IMAGES) + 1
-    }.jpg`;
+    this.imageUrl = `assets/login-images/plant-0${Math.floor(Math.random() * NUMBER_OF_AVAILABLE_IMAGES) + 1}.jpg`;
   }
 
   getErrorMessage() {
@@ -66,11 +56,11 @@ export class SignupComponent {
     this.signupError = null;
     this.loading = true;
 
-    if (this.form.invalid) return;    
+    if (this.form.invalid) {
+      return;
+    }
 
-    const { user, error } = await this.accountService.register(
-      this.form.getRawValue()
-    );
+    const { user, error } = await this.accountService.register(this.form.getRawValue());
 
     if (!error && user) {
       this.router.navigateByUrl('/');

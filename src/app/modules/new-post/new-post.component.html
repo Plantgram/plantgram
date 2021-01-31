@@ -1,46 +1,47 @@
 <div>
   <div class="post-title">
     <span class="logo">
-      <img src="assets/plantgram_logo-v02.svg" [ngStyle]="{'width':size, 'height':size}"/> 
+      <img src="assets/plantgram_logo-v02.svg" [ngStyle]="{ width: size, height: size }" />
     </span>
-    <p>
-      Create a new<span class="title">Plantgram</span>story
-    </p>      
+    <p> Create a new<span class="title">Plantgram</span>story </p>
   </div>
 
- <form [formGroup]="postForm" #form="ngForm" (ngSubmit)="onFormSubmit()" novalidate>
-
+  <form [formGroup]="postForm" #form="ngForm" (ngSubmit)="onFormSubmit()" novalidate>
     <mat-form-field>
       <mat-label>Add story title</mat-label>
-      <input matInput required placeholder="Title" formControlName="title">
+      <input matInput required placeholder="Title" formControlName="title" />
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Add story description</mat-label>
-      <textarea matInput formControlName="description" placeholder="Ex: Plants are autotrophs; they produce their own food. They do so via photosynthesis, which is the process of making nutrients such as sugars from light energy and carbon dioxide."></textarea>
+      <textarea
+        matInput
+        formControlName="description"
+        placeholder="Ex: Plants are autotrophs; they produce their own food. They do so via photosynthesis, which is the process of making nutrients such as sugars from light energy and carbon dioxide."
+      ></textarea>
     </mat-form-field>
 
     <mat-form-field class="example-chip-list">
       <mat-label>Tags</mat-label>
       <mat-chip-list #chipList aria-label="Tags">
-        <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
-                 [removable]="removable" (removed)="removeTag(tag)">
-          {{tag.name}}
+        <mat-chip *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable" (removed)="removeTag(tag)">
+          {{ tag.name }}
           <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
         </mat-chip>
-        <input placeholder="Add new tag"
-               [matChipInputFor]="chipList"
-               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-               [matChipInputAddOnBlur]="addOnBlur"
-               (matChipInputTokenEnd)="addTag($event)"
-               formControlName="tags[]"
-               >
+        <input
+          placeholder="Add new tag"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="addTag($event)"
+          formControlName="tags[]"
+        />
       </mat-chip-list>
     </mat-form-field>
 
     <div class="form-actions">
       <div class="submit">
-        <button type="submit" mat-raised-button color="primary">Create story</button>        
+        <button type="submit" mat-raised-button color="primary">Create story</button>
       </div>
     </div>
 
@@ -50,11 +51,14 @@
           <h2>Upload images</h2>
         </div>
       </ngx-dropzone-label>
-      <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemoveImage(f)">      
+      <ngx-dropzone-image-preview
+        ngProjectAs="ngx-dropzone-preview"
+        *ngFor="let f of files"
+        [file]="f"
+        [removable]="true"
+        (removed)="onRemoveImage(f)"
+      >
       </ngx-dropzone-image-preview>
-    </div> 
-
+    </div>
   </form>
 </div>
-
-    

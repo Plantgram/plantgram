@@ -28,12 +28,15 @@
   Hello
 </div> -->
 
-
 <div class="container">
-  <img src="{{user.image}}" alt="Norway" class="post-image">
+  <img src="{{ user.image }}" alt="Norway" class="post-image" />
   <div class="text-block">
-    <img src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="Photo of a Shiba Inu" class="user-image">
-    <span>{{user.first_name}} {{user.last_name}}</span>
+    <img
+      src="https://material.angular.io/assets/img/examples/shiba1.jpg"
+      alt="Photo of a Shiba Inu"
+      class="user-image"
+    />
+    <span>{{ user.first_name }} {{ user.last_name }}</span>
     <div class="actions-block">
       <button mat-fab color="primary" aria-label="Example icon button with a home icon">
         <mat-icon>add</mat-icon>
@@ -46,5 +49,4 @@
       </button>
     </div>
   </div>
-</div> 
-
+</div>
