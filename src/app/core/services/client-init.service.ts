@@ -18,7 +18,7 @@ export class SupabaseClientInit{
    
     this.supabaseClient.auth.onAuthStateChange((event, session) => {      
       console.log(event, session);
-      console.log(JSON.parse(localStorage.getItem('supabase.auth.token')));
+      console.log(JSON.parse(localStorage.getItem('supabase.auth.token')!));
     })
   }
 }
