@@ -23,6 +23,7 @@ import { MatChipsModule } from '@angular/material/chips';
 
 import { RouterModule } from '@angular/router';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { NgxMasonryModule } from 'ngx-masonry';
 
 import { MobileToolbarComponent } from './components/mobile-toolbar/mobile-toolbar.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -48,6 +49,7 @@ const MATERIAL_MODULES = [
   ReactiveFormsModule,
   NgxDropzoneModule,
   FormsModule,
+  NgxMasonryModule,
 ];
 
 @NgModule({
