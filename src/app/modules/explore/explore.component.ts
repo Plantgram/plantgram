@@ -2,10 +2,7 @@ import { NgxMasonryOptions } from 'ngx-masonry';
 import { AccountService } from 'src/app/core/services/account.service';
 import { environment } from 'src/environments/environment';
 
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { createClient } from '@supabase/supabase-js';
 
@@ -25,10 +22,7 @@ export class ExploreComponent implements OnInit {
     gutter: 20,
   };
 
-  constructor(
-    private accountService: AccountService,
-    public dialog: MatDialog
-  ) {}
+  constructor(private accountService: AccountService, public dialog: MatDialog) {}
 
   ngOnInit() {
     // Create a single supabase client for interacting with your database

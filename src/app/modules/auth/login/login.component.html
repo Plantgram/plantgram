@@ -1,10 +1,5 @@
 <main class="container" gdColumns="1fr" gdColumns.gt-sm="1fr 1fr">
-  <div
-    fxHide
-    fxShow.gt-sm="true"
-    class="image-container"
-    [style.background-image]="'url(' + imageUrl + ')'"
-  ></div>
+  <div fxHide fxShow.gt-sm="true" class="image-container" [style.background-image]="'url(' + imageUrl + ')'"></div>
 
   <section class="login-container">
     <div class="title" color="primary">
@@ -21,24 +16,13 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <mat-form-field class="form-field" appearance="fill">
             <mat-label>Enter your email</mat-label>
-            <input
-              matInput
-              type="email"
-              formControlName="email"
-              required
-              placeholder="pat@example.com"
-            />
+            <input matInput type="email" formControlName="email" required placeholder="pat@example.com" />
             <mat-error *ngIf="email?.errors">You must enter a value</mat-error>
           </mat-form-field>
 
           <mat-form-field class="form-field" appearance="fill">
             <mat-label>Enter your password</mat-label>
-            <input
-              matInput
-              formControlName="password"
-              [type]="isPasswordVisible ? 'text' : 'password'"
-              required
-            />
+            <input matInput formControlName="password" [type]="isPasswordVisible ? 'text' : 'password'" required />
             <button
               mat-icon-button
               matSuffix
@@ -46,24 +30,18 @@
               [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="isPasswordVisible"
             >
-              <mat-icon>{{
-                isPasswordVisible ? "visibility" : "visibility_off"
-              }}</mat-icon>
+              <mat-icon>{{ isPasswordVisible ? 'visibility' : 'visibility_off' }}</mat-icon>
             </button>
           </mat-form-field>
 
           <mat-error *ngIf="loginError">Invalid Email or Password</mat-error>
 
-          <button class="form-field" mat-raised-button color="primary">
-            Login
-          </button>
+          <button class="form-field" mat-raised-button color="primary"> Login </button>
         </form>
 
         <div class="separator form-field" color="primary">OR</div>
 
-        <a class="form-field" mat-button href="./auth/signup" color="primary"
-          >Register</a
-        >
+        <a class="form-field" mat-button href="./auth/signup" color="primary">Register</a>
       </mat-card-content>
     </mat-card>
   </section>

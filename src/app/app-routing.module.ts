@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
-import {
-    RouterModule,
-    Routes,
-} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
@@ -14,8 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'explore',
-    loadChildren: () =>
-      import('./modules/explore/explore.module').then((m) => m.ExploreModule),
+    loadChildren: () => import('./modules/explore/explore.module').then((m) => m.ExploreModule),
   },
   {
     path: 'user',
@@ -24,25 +20,19 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    loadChildren: () =>
-      import('./modules/user/user.module').then((m) => m.UserModule),
+    loadChildren: () => import('./modules/user/user.module').then((m) => m.UserModule),
   },
   {
     path: 'settings',
-    loadChildren: () =>
-      import('./modules/settings/settings.module').then(
-        (m) => m.SettingsModule
-      ),
+    loadChildren: () => import('./modules/settings/settings.module').then((m) => m.SettingsModule),
   },
   {
     path: 'auth',
-    loadChildren: () =>
-      import('./modules/auth/auth.module').then((m) => m.AuthModule),
+    loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'test/api',
-    loadChildren: () =>
-      import('./test/api-test/api-test.module').then((m) => m.ApiTestModule),
+    loadChildren: () => import('./test/api-test/api-test.module').then((m) => m.ApiTestModule),
   },
   { path: '**', component: PageNotFoundComponent }, // Wildcard route for a 404 page
 ];

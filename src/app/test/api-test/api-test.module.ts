@@ -7,9 +7,6 @@ import { ApiTestComponent } from './api-test.component';
 
 @NgModule({
   declarations: [ApiTestComponent],
-  imports: [
-    ApiTestRoutingModule, 
-    SharedModule
-  ],
+  imports: [ApiTestRoutingModule, SharedModule],
 })
 export class ApiTestModule {}
