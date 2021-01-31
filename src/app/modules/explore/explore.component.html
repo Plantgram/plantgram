@@ -9,10 +9,10 @@
     <div class="actionbar">
       <mat-list role="list">
         <mat-list-item role="listitem"
-        ><a mat-button [routerLink]="['/explore']"
-          ><mat-icon>search</mat-icon>Search</a
-        ></mat-list-item
-      >
+          ><a mat-button [routerLink]="['/explore']"
+            ><mat-icon>search</mat-icon>Search</a
+          ></mat-list-item
+        >
         <mat-list-item role="listitem"
           ><a mat-button [routerLink]="['/explore']"
             ><mat-icon>explore</mat-icon>Explore</a
@@ -25,31 +25,30 @@
         >
 
         <mat-list-item role="listitem"
-          ><button mat-button (click)="onGetPosts()"><mat-icon>settings</mat-icon>Get Posts</button
-          ></mat-list-item
+          ><button mat-button (click)="onGetPosts()">
+            <mat-icon>settings</mat-icon>Get Posts
+          </button></mat-list-item
         >
 
         <mat-list-item role="listitem"
           ><button mat-button (click)="openNewPostDialog()">New post</button>
-          </mat-list-item
-        >
+        </mat-list-item>
       </mat-list>
     </div>
   </mat-drawer>
 
   <main class="sidenav-content">
     <ngx-masonry [options]="myOptions">
-      <app-post *ngFor="let post of posts" [user]="post" ngxMasonryItem class="masonry-item grid-item" ></app-post>
+      <app-post
+        *ngFor="let post of posts"
+        [user]="post"
+        ngxMasonryItem
+        class="grid-item"
+        [ngStyle]="{ width: '100%' }"
+        [ngStyle.sm]="{ width: '48%' }"
+        [ngStyle.md]="{ width: '31%' }"
+        [ngStyle.gt-md]="{ width: '23%' }"
+      ></app-post>
     </ngx-masonry>
-    <!-- <section
-      class="explore"
-      gdColumns="1fr"
-      gdColumns.sm="1fr 1fr"
-      gdColumns.gt-sm="1fr 1fr 1fr"
-      gdColumns.gt-md="1fr 1fr 1fr 1fr"
-      gdGap="60px 30px"
-    >
-      <app-post *ngFor="let post of posts" [user]="post"></app-post>
-    </section> -->
   </main>
 </mat-drawer-container>
