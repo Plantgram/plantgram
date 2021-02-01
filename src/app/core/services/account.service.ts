@@ -49,8 +49,13 @@ export class AccountService {
     return { user, error };
   }
 
-  signOut() {
-    // TODO
+  async signOut() {
+    const { error } = await this.supabaseClient.auth.signOut();
+    if (error) {
+      // TODO: Logout failed
+    } else {
+      this.userSubject.next(null);
+    }
   }
 
   update() {
