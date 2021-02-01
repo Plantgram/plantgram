@@ -1,6 +1,9 @@
 import { SUPABASE_CLIENT } from 'src/app/supabase-client';
 
-import { Inject, Injectable } from '@angular/core';
+import {
+    Inject,
+    Injectable,
+} from '@angular/core';
 import { SupabaseClient } from '@supabase/supabase-js';
 
 @Injectable({
