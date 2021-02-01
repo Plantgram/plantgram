@@ -32,35 +32,17 @@ export class DatabaseService {
     return await this.supabaseClient.from('posts').select('*').eq('user_id', userID);
   }
   //#endregion
-  getBase64(file: any) {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      return reader.result?.toString().split(',')[1];
-    };
-    reader.onerror = (error) => {
-      console.log('Error: ', error);
-    };
-  }
 
   //#region POST/INSERT API
   async insertPost(data: any, userID: any) {
-    const reader = new FileReader();
-    const helperArray: (string | ArrayBuffer | null)[] = [];
     try {
-      data.images.forEach((image: any) => {
-        reader.readAsDataURL(image);
-        reader.onload = () => {
-          helperArray.push(reader.result);
-        };
-      });
       await this.supabaseClient.from('posts').insert([
         {
           user_id: userID,
           title: data.title,
           description: data.description,
           tags: { tagsList: data.tags },
-          images_path: { images: helperArray },
+          images_path: { images: [] },
         },
       ]);
     } catch (error) {
