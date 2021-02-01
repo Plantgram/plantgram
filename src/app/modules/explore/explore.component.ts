@@ -1,10 +1,9 @@
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { AccountService } from 'src/app/core/services/account.service';
-import { environment } from 'src/environments/environment';
 
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { createClient } from '@supabase/supabase-js';
+import { DatabaseService } from '../../core/services/database.service';
 
 import { new_mock } from '../../../assets/new_mock';
 import { NewPostComponent } from '../new-post/new-post.component';
@@ -16,20 +15,15 @@ import { NewPostComponent } from '../new-post/new-post.component';
 })
 export class ExploreComponent implements OnInit {
   posts = new_mock;
-  supabaseClient: any;
+  dbPosts: any;
 
   public myOptions: NgxMasonryOptions = {
     gutter: 20,
   };
 
-  constructor(private accountService: AccountService, public dialog: MatDialog) {}
-
-  ngOnInit() {
-    // Create a single supabase client for interacting with your database
-    const { url, key } = environment.supabase;
-    this.supabaseClient = createClient(url, key);
-
-    console.log(this.accountService.currentUser, 'is logged in');
+  constructor(private _dbService: DatabaseService, public dialog: MatDialog) { }
+  async ngOnInit(): Promise<void> {
+      this.dbPosts = await this.getPosts();
   }
 
   openNewPostDialog(): void {
@@ -42,10 +36,11 @@ export class ExploreComponent implements OnInit {
     });
   }
 
-  async onGetPosts() {
-    const { data, error } = await this.supabaseClient
-      .from('posts')
-      .select(`id, created_at, user_id, title, description`);
-    console.log(data, error, 'supabase');
+  async getPosts() {
+    const { data, error } = await this._dbService.client
+    .from('posts')
+    .select(`id, created_at, user_id, title, description, images_path`);
+    return data;
   }
+
 }
