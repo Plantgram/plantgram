@@ -1,17 +1,8 @@
-import {
-    BehaviorSubject,
-    Observable,
-} from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { SUPABASE_CLIENT } from 'src/app/supabase-client';
 
-import {
-    Inject,
-    Injectable,
-} from '@angular/core';
-import {
-    SupabaseClient,
-    User,
-} from '@supabase/supabase-js';
+import { Inject, Injectable } from '@angular/core';
+import { SupabaseClient, User } from '@supabase/supabase-js';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -20,10 +11,9 @@ export class AuthService {
   localStorageToken = localStorage.getItem('supabase.auth.token');
 
   constructor(@Inject(SUPABASE_CLIENT) private supabaseClient: SupabaseClient) {
-    this.userSubject =
-      this.localStorageToken !== null
-        ? new BehaviorSubject(JSON.parse(localStorage.getItem('supabase.auth.token')!).currentSession.user)
-        : new BehaviorSubject<User | null>(null);
+    this.userSubject = new BehaviorSubject(
+      this.localStorageToken ? JSON.parse(this.localStorageToken).currentSession.user : null
+    );
     this.currentUser$ = this.userSubject.asObservable();
   }
 

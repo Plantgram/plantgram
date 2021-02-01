@@ -1,9 +1,6 @@
 import { SUPABASE_CLIENT } from 'src/app/supabase-client';
 
-import {
-    Inject,
-    Injectable,
-} from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { SupabaseClient } from '@supabase/supabase-js';
 
 @Injectable({
@@ -33,28 +30,27 @@ export class DatabaseService {
   }
   //#endregion
   getBase64(file: any) {
-    let reader = new FileReader();
+    const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = function () {
+    reader.onload = () => {
       return reader.result?.toString().split(',')[1];
     };
-    reader.onerror = function (error) {
+    reader.onerror = (error) => {
       console.log('Error: ', error);
     };
   }
 
   //#region POST/INSERT API
   async insertPost(data: any, userID: any) {
-    let reader = new FileReader();
-    let helperArray: (string | ArrayBuffer | null)[] = [];
+    const reader = new FileReader();
+    const helperArray: (string | ArrayBuffer | null)[] = [];
     try {
-      for (let i = 0; i < data.images.length; i++) {
-        reader.readAsDataURL(data.images[i]);
-        reader.onload = function () {
+      data.images.forEach((image: any) => {
+        reader.readAsDataURL(image);
+        reader.onload = () => {
           helperArray.push(reader.result);
         };
-      }
-      console.log(helperArray);
+      });
       await this.supabaseClient.from('posts').insert([
         {
           user_id: userID,
