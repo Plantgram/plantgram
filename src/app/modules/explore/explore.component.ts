@@ -13,16 +13,17 @@ import { NewPostComponent } from '../new-post/new-post.component';
   templateUrl: './explore.component.html',
   styleUrls: ['./explore.component.styl'],
 })
-export class ExploreComponent {
+export class ExploreComponent implements OnInit {
   posts = new_mock;
-  client: any;
+  dbPosts: any;
 
   public myOptions: NgxMasonryOptions = {
     gutter: 20,
   };
 
-  constructor(private dbService: DatabaseService, public dialog: MatDialog) {
-    this.client = this.dbService;   
+  constructor(private _dbService: DatabaseService, public dialog: MatDialog) { }
+  async ngOnInit(): Promise<void> {
+      this.dbPosts = await this.getPosts();
   }
 
   openNewPostDialog(): void {
@@ -35,10 +36,11 @@ export class ExploreComponent {
     });
   }
 
-  async onGetPosts() {
-    const { data, error } = await this.client
-      .from('posts')
-      .select(`id, created_at, user_id, title, description`);
-    console.log(data, error, 'supabase');
+  async getPosts() {
+    const { data, error } = await this._dbService.client
+    .from('posts')
+    .select(`id, created_at, user_id, title, description, images_path`);
+    return data;
   }
+
 }

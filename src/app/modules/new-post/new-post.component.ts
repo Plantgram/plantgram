@@ -63,6 +63,6 @@ export class NewPostComponent {
 
   onFormSubmit() {
     console.log(this.postForm);
-    this.dbService.insertPost(this.postForm.value, this.dbService.currentUser!.id); // FIXME: pass userid
+    this.dbService.insertPost(this.postForm.value, this.dbService.currentUser!.id);
   }
 }

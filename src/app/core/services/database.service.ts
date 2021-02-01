@@ -28,19 +28,38 @@ export class DatabaseService extends AccountService {
     return await this.client.from('posts').select('*').eq('user_id', userID);
   }
   //#endregion
+    getBase64(file: any) {
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function () {        
+        return reader.result?.toString().split(',')[1]; 
+      };
+      reader.onerror = function (error) {
+        console.log('Error: ', error);
+      };
+  }
 
   //#region POST/INSERT API
   async insertPost(data: any, userID: any) {
-    try {
+    let reader = new FileReader();
+    let helperArray: (string | ArrayBuffer | null)[] = [];
+    try {      
+      for(let i = 0; i < data.images.length; i++) {
+        reader.readAsDataURL(data.images[i]);
+        reader.onload = function () {        
+          helperArray.push(reader.result) 
+        };           
+      }
+      console.log(helperArray);
       await this.client.from('posts').insert([
         {
           user_id: userID,
           title: data.title,
           description: data.description,
           tags: { tagsList: data.tags },
-          images_path: { imagesList: data.images },
+          images_path: {images: helperArray},
         },
-      ]);
+      ]);    
     } catch (error) {
       console.log(error);
     }

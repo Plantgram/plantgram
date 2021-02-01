@@ -6,13 +6,14 @@ import { SupabaseClientInit } from './client-init.service';
 @Injectable({ providedIn: 'root' })
 
 export class AccountService {
-  client: any;
+  client: any;  
   private userSubject: BehaviorSubject<User | null>;
   public readonly currentUser$: Observable<User | null>;
+  localStorageToken = localStorage.getItem('supabase.auth.token');
 
   constructor(private _client: SupabaseClientInit ) {
     this.client = this._client.supabaseClient;
-    this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('supabase.auth.token')!).currentSession.user);      
+    this.userSubject = this.localStorageToken !== null ? new BehaviorSubject(JSON.parse(localStorage.getItem('supabase.auth.token')!).currentSession.user) : new BehaviorSubject<User | null>(null);      
     this.currentUser$ = this.userSubject.asObservable();
   }
 
