@@ -1,6 +1,17 @@
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth.service';
+
+import {
+    COMMA,
+    ENTER,
+} from '@angular/cdk/keycodes';
+import {
+    Component,
+    Input,
+} from '@angular/core';
+import {
+    FormControl,
+    FormGroup,
+} from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 
 import { DatabaseService } from '../../core/services/database.service';
@@ -33,7 +44,7 @@ export class NewPostComponent {
     images: new FormControl(this.files),
   });
 
-  constructor(private dbService: DatabaseService) {}
+  constructor(private dbService: DatabaseService, private authService: AuthService) {}
 
   addTag(event: MatChipInputEvent): void {
     const input = event.input;
@@ -63,6 +74,6 @@ export class NewPostComponent {
 
   onFormSubmit() {
     console.log(this.postForm);
-    this.dbService.insertPost(this.postForm.value, this.dbService.currentUser!.id);
+    this.dbService.insertPost(this.postForm.value, this.authService.currentUser?.id);
   }
 }

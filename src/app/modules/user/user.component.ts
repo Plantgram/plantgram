@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+    Component,
+    OnInit,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { AuthService } from '../../core/services/auth.service';
 import { DatabaseService } from '../../core/services/database.service';
-import { AccountService } from '../../core/services/account.service';
 
 interface User {
   first_name: string;
@@ -24,13 +27,13 @@ export class UserComponent implements OnInit {
 
   constructor(
     private Activatedroute: ActivatedRoute,
-    private accountService: AccountService,
+    private authService: AuthService,
     private dbService: DatabaseService
   ) {}
 
   ngOnInit(): void {
     this.request = this.Activatedroute.paramMap.subscribe(async () => {
-      this.id = this.accountService.currentUser?.id;
+      this.id = this.authService.currentUser?.id;
       this.user = await this.getUserProfile();
     });
   }

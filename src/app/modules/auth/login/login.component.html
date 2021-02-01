@@ -12,12 +12,15 @@
         <mat-card-title>Login to Plantgram</mat-card-title>
       </mat-card-header>
 
+      <button (click)="onGithubLogin()" class="form-field" mat-stroked-button color="primary">Github Login</button>
+
       <mat-card-content>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <mat-form-field class="form-field" appearance="fill">
             <mat-label>Enter your email</mat-label>
-            <input matInput type="email" formControlName="email" required placeholder="pat@example.com" />
-            <mat-error *ngIf="email?.errors">You must enter a value</mat-error>
+            <input matInput type="email" formControlName="email" email required placeholder="pat@example.com" />
+            <mat-error *ngIf="email?.errors?.email">You must enter an email</mat-error>
+            <mat-error *ngIf="email?.errors?.required">You must enter a value</mat-error>
           </mat-form-field>
 
           <mat-form-field class="form-field" appearance="fill">
@@ -36,7 +39,7 @@
 
           <mat-error *ngIf="loginError">Invalid Email or Password</mat-error>
 
-          <button class="form-field" mat-raised-button color="primary"> Login </button>
+          <button class="form-field" mat-raised-button color="primary">Login</button>
         </form>
 
         <div class="separator form-field" color="primary">OR</div>

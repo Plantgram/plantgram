@@ -7,10 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { ExploreModule } from './modules/explore/explore.module';
+import { NewPostComponent } from './modules/new-post/new-post.component';
 import { SettingsModule } from './modules/settings/settings.module';
 import { UserModule } from './modules/user/user.module';
 import { SharedModule } from './shared/shared.module';
-import { NewPostComponent } from './modules/new-post/new-post.component';
+import {
+    SUPABASE_CLIENT,
+    supabaseClient,
+} from './supabase-client';
 
 @NgModule({
   declarations: [AppComponent, NewPostComponent],
@@ -28,6 +32,10 @@ import { NewPostComponent } from './modules/new-post/new-post.component';
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'fill' },
+    },
+    {
+      provide: SUPABASE_CLIENT,
+      useValue: supabaseClient,
     },
   ],
   bootstrap: [AppComponent],
