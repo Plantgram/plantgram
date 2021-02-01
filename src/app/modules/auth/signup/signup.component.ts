@@ -1,7 +1,12 @@
-import { AccountService } from 'src/app/core/services/account.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+    AbstractControl,
+    FormBuilder,
+    FormGroup,
+    Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 function matchPassword(group: AbstractControl) {
@@ -26,7 +31,7 @@ export class SignupComponent {
   signupError: any;
   imageUrl: string;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private accountService: AccountService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) {
     this.form = this.formBuilder.group(
       {
         firstname: [''],
@@ -60,7 +65,7 @@ export class SignupComponent {
       return;
     }
 
-    const { user, error } = await this.accountService.register(this.form.getRawValue());
+    const { user, error } = await this.authService.register(this.form.getRawValue());
 
     if (!error && user) {
       this.router.navigateByUrl('/');

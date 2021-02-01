@@ -1,8 +1,15 @@
-import { AccountService } from 'src/app/core/services/account.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+    FormBuilder,
+    FormGroup,
+    Validators,
+} from '@angular/forms';
+import {
+    ActivatedRoute,
+    Router,
+} from '@angular/router';
 
 const NUMBER_OF_AVAILABLE_IMAGES = 4;
 
@@ -21,7 +28,7 @@ export class LoginComponent {
   returnUrl = '/';
 
   constructor(
-    private accountService: AccountService,
+    private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router,
     private route: ActivatedRoute
@@ -42,7 +49,7 @@ export class LoginComponent {
   }
 
   async onGithubLogin() {
-    const { user, error } = await this.accountService.signIn({ provider: 'github' });
+    const { user, error } = await this.authService.signIn({ provider: 'github' });
 
     if (!error && user) {
       this.router.navigate([this.returnUrl]);
@@ -59,7 +66,7 @@ export class LoginComponent {
     }
     this.loading = true;
 
-    const { user, error } = await this.accountService.signIn(this.form.getRawValue());
+    const { user, error } = await this.authService.signIn(this.form.getRawValue());
 
     if (!error && user) {
       this.router.navigate([this.returnUrl]);

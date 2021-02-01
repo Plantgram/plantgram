@@ -1,9 +1,13 @@
 import { NgxMasonryOptions } from 'ngx-masonry';
-import { AccountService } from 'src/app/core/services/account.service';
+import { SUPABASE_CLIENT } from 'src/app/supabase-client';
 
-import { Component, OnInit } from '@angular/core';
+import {
+    Component,
+    Inject,
+    OnInit,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DatabaseService } from '../../core/services/database.service';
+import { SupabaseClient } from '@supabase/supabase-js';
 
 import { new_mock } from '../../../assets/new_mock';
 import { NewPostComponent } from '../new-post/new-post.component';
@@ -21,9 +25,9 @@ export class ExploreComponent implements OnInit {
     gutter: 20,
   };
 
-  constructor(private _dbService: DatabaseService, public dialog: MatDialog) { }
+  constructor(@Inject(SUPABASE_CLIENT) private supabaseClient: SupabaseClient, public dialog: MatDialog) {}
   async ngOnInit(): Promise<void> {
-      this.dbPosts = await this.getPosts();
+    this.dbPosts = await this.getPosts();
   }
 
   openNewPostDialog(): void {
@@ -37,10 +41,9 @@ export class ExploreComponent implements OnInit {
   }
 
   async getPosts() {
-    const { data, error } = await this._dbService.client
-    .from('posts')
-    .select(`id, created_at, user_id, title, description, images_path`);
+    const { data, error } = await this.supabaseClient
+      .from('posts')
+      .select(`id, created_at, user_id, title, description, images_path`);
     return data;
   }
-
 }
