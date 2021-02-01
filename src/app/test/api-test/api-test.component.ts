@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { DatabaseService } from '../../api/database.service';
+import { DatabaseService } from '../../core/services/database.service';
 
 @Component({
   selector: 'app-api-test',

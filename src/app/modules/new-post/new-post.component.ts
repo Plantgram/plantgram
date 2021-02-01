@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 
-import { DatabaseService } from '../../api/database.service';
+import { DatabaseService } from '../../core/services/database.service';
 
 export interface Tag {
   name: string;
@@ -63,6 +63,6 @@ export class NewPostComponent {
 
   onFormSubmit() {
     console.log(this.postForm);
-    this.dbService.insertPost(this.postForm.value, ''); // FIXME: pass userid
+    this.dbService.insertPost(this.postForm.value, this.dbService.currentUser!.id);
   }
 }
