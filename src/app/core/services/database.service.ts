@@ -19,13 +19,15 @@ export class DatabaseService {
 
   async getUserProfile(id: any) {
     return await this.supabaseClient
-      .from('user_profile')
-      .select('first_name, last_name, about, user_image_path')
-      .eq('user_id', id);
+      .from('users')
+      .select('id, first_name, last_name, about, profile_image')
+      .eq('id', id);
   }
 
   async getAllPosts() {
-    return await this.supabaseClient.from('posts').select('*');
+    return await this.supabaseClient
+    .from('posts')
+    .select(`id, user_id, author:user_id (id, first_name, last_name)`);
   }
 
   async getUserPosts(userID: any) {

@@ -1,5 +1,4 @@
 import { NgxMasonryOptions } from 'ngx-masonry';
-import { SUPABASE_CLIENT } from 'src/app/supabase-client';
 
 import {
     Component,
@@ -7,10 +6,10 @@ import {
     OnInit,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { SupabaseClient } from '@supabase/supabase-js';
 
 import { new_mock } from '../../../assets/new_mock';
 import { NewPostComponent } from '../new-post/new-post.component';
+import { DatabaseService } from 'src/app/core/services/database.service';
 
 @Component({
   selector: 'app-explore',
@@ -25,7 +24,7 @@ export class ExploreComponent implements OnInit {
     gutter: 20,
   };
 
-  constructor(@Inject(SUPABASE_CLIENT) private supabaseClient: SupabaseClient, public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private db: DatabaseService ) {}
   async ngOnInit(): Promise<void> {
     this.dbPosts = await this.getPosts();
   }
@@ -41,9 +40,7 @@ export class ExploreComponent implements OnInit {
   }
 
   async getPosts() {
-    const { data, error } = await this.supabaseClient
-      .from('posts')
-      .select(`id, created_at, user_id, title, description, images_path`);
+    const { data, error } = await this.db.getAllPosts();
     return data;
   }
 }
