@@ -27,7 +27,8 @@ export class DatabaseService {
   async getAllPosts() {
     return await this.supabaseClient
     .from('posts')
-    .select(`id, user_id, author:user_id (id, first_name, last_name)`);
+    .select(`id, user_id, title, description, tags, author:user_id (id, first_name, last_name)`)
+    .order('created_at', { ascending: false });
   }
 
   async getUserPosts(userID: any) {

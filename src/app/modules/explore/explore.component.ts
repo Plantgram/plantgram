@@ -41,6 +41,7 @@ export class ExploreComponent implements OnInit {
 
   async getPosts() {
     const { data, error } = await this.db.getAllPosts();
+    console.log(data);
     return data;
   }
 }

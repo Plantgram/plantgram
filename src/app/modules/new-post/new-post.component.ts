@@ -16,10 +16,6 @@ import { MatChipInputEvent } from '@angular/material/chips';
 
 import { DatabaseService } from '../../core/services/database.service';
 
-export interface Tag {
-  name: string;
-}
-
 @Component({
   selector: 'app-new-post',
   templateUrl: './new-post.component.html',
@@ -33,7 +29,7 @@ export class NewPostComponent {
   removable = true;
   addOnBlur = true;
 
-  tags: Tag[] = [];
+  tags: string[] = [];
   files: File[] = [];
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
@@ -50,14 +46,14 @@ export class NewPostComponent {
     const input = event.input;
     const value = event.value;
     if ((value || '').trim()) {
-      this.tags.push({ name: value.trim() });
+      this.tags.push('#' + value.trim());
     }
     if (input) {
       input.value = '';
     }
   }
 
-  removeTag(tags: Tag): void {
+  removeTag(tags: string): void {
     const index = this.tags.indexOf(tags);
     if (index >= 0) {
       this.tags.splice(index, 1);
