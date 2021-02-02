@@ -53,8 +53,8 @@ export class NewPostComponent {
     }
   }
 
-  removeTag(tags: string): void {
-    const index = this.tags.indexOf(tags);
+  removeTag(tag: string): void {
+    const index = this.tags.indexOf(tag);
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
