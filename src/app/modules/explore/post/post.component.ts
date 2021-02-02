@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./post.component.styl'],
 })
 export class PostComponent {
-  @Input() user: any;
+  @Input() post: any;
 }

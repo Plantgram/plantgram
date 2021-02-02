@@ -17,28 +17,31 @@ export class DatabaseService {
     return await this.supabaseClient.from('user_cred').select('*');
   }
 
-  async getUserProfile(id: any) {
+  async getUserProfile(userId: string) {
     return await this.supabaseClient
-      .from('user_profile')
-      .select('first_name, last_name, about, user_image_path')
-      .eq('user_id', id);
+      .from('users')
+      .select('id, first_name, last_name, about, profile_image')
+      .eq('id', userId);
   }
 
   async getAllPosts() {
-    return await this.supabaseClient.from('posts').select('*');
+    return await this.supabaseClient
+    .from('posts')
+    .select(`id, user_id, title, description, tags, author:user_id (id, first_name, last_name)`)
+    .order('created_at', { ascending: false });
   }
 
-  async getUserPosts(userID: any) {
-    return await this.supabaseClient.from('posts').select('*').eq('user_id', userID);
+  async getUserPosts(userId: any) {
+    return await this.supabaseClient.from('posts').select('*').eq('user_id', userId);
   }
   //#endregion
 
   //#region POST/INSERT API
-  async insertPost(data: any, userID: any) {
+  async insertPost(data: any, userId: any) {
     try {
       await this.supabaseClient.from('posts').insert([
         {
-          user_id: userID,
+          user_id: userId,
           title: data.title,
           description: data.description,
           tags: { tagsList: data.tags },

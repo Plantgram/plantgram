@@ -25,7 +25,7 @@
     <ngx-masonry [options]="myOptions">
       <app-post
         *ngFor="let post of dbPosts"
-        [user]="post"
+        [post]="post"
         ngxMasonryItem
         class="grid-item"
         [ngStyle]="{ width: '100%' }"

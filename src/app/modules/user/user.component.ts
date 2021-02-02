@@ -32,14 +32,15 @@ export class UserComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.request = this.Activatedroute.paramMap.subscribe(async () => {
-      this.id = this.authService.currentUser?.id;
+    this.request = this.Activatedroute.paramMap.subscribe(async (params) => {
+      this.id = params.get('id');
       this.user = await this.getUserProfile();
     });
   }
 
   async getUserProfile() {
     const req = await this.dbService.getUserProfile(this.id);
+    console.log(req);
     return req?.body && req.body[0];
   }
 }

@@ -25,7 +25,7 @@
       <mat-label>Tags</mat-label>
       <mat-chip-list #chipList aria-label="Tags">
         <mat-chip *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable" (removed)="removeTag(tag)">
-          {{ tag.name }}
+          {{tag}}
           <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
         </mat-chip>
         <input

@@ -31,14 +31,11 @@ export class AuthService {
     // Register a user inside private user table
     const { user, error } = await this.supabaseClient.auth.signUp(credentials);
 
-    await this.supabaseClient.from('users').insert([{ id: user?.id }]);
-    await this.supabaseClient.from('user_profile').insert([
-      {
-        user_id: user?.id,
-        first_name: credentials.firstname,
-        last_name: credentials.lastname,
-      },
-    ]);
+    await this.supabaseClient.from('users').insert([{
+      id: user?.id,
+      first_name: credentials.firstname,
+      last_name: credentials.lastname,
+    }]);
 
     // Return user and log him in
     this.userSubject.next(user);
