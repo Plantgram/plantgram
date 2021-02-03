@@ -1,7 +1,27 @@
 <mat-card class="card">
   <mat-card-header>
     <div mat-card-avatar class="header-image"></div>
-    <mat-card-title><a [routerLink]="['/user/', post.user_id]">{{post.author.first_name}} {{post.author.last_name}}</a></mat-card-title>
+    <mat-card-title>
+      <a [routerLink]="['/user/', post.user_id]">{{post.author.first_name}} {{post.author.last_name}}</a>
+    </mat-card-title>
+    <div class="button-container" *ngIf="isLoggedIn && isAuthor"> 
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <div *ngIf="isFollowed; else elseBlock">
+          <button mat-menu-item (click)="unSubscribe()">
+            <mat-icon>person_remove</mat-icon>
+            <span>Unfollow</span>
+          </button>
+        </div>
+        <ng-template #elseBlock>
+          <button mat-menu-item (click)="subscribe()">
+          <mat-icon>person_add</mat-icon>
+          <span>Follow</span>
+        </button></ng-template>
+      </mat-menu>      
+    </div>
   </mat-card-header>
   <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
   <mat-card-content class="title">

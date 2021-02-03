@@ -27,12 +27,25 @@ export class DatabaseService {
   async getAllPosts() {
     return await this.supabaseClient
     .from('posts')
-    .select(`id, user_id, title, description, tags, author:user_id (id, first_name, last_name)`)
+    .select(`id, user_id, title, description, tags, images_path, author:user_id (id, first_name, last_name)`)
     .order('created_at', { ascending: false });
   }
 
   async getUserPosts(userId: any) {
     return await this.supabaseClient.from('posts').select('*').eq('user_id', userId);
+  }
+
+  async getBookmarks() {
+    return await this.supabaseClient
+    .from('post_bookmarks')
+    .select('post_id, user_id');
+  }
+
+  async getSubscription(subscriberUserId: any, subscribedToUserId: any) {
+    return await this.supabaseClient
+    .from('user_subscription')
+    .select('id, subscriber_user_id, subscribed_to_user_id')
+    .match({subscriber_user_id: subscriberUserId, subscribed_to_user_id: subscribedToUserId});
   }
   //#endregion
 
@@ -81,7 +94,6 @@ export class DatabaseService {
   //#endregion
 
   //#region PUT/UPDATE API
-
   //#endregion
 
   //#region POST/DELETE API
@@ -93,16 +105,11 @@ export class DatabaseService {
     }
   }
 
-  async unSubscribe(subscriberID: any, subscribedToID: any) {
-    try {
-      await this.supabaseClient
-        .from('user_subscription')
-        .delete()
-        .eq('subscriber_user_id', subscriberID)
-        .eq('subscribed_to_user_id', subscribedToID);
-    } catch (error) {
-      console.log(error);
-    }
+  async unSubscribe(subscriberUserId: any, subscribedToUserId: any) {
+    await this.supabaseClient
+      .from('user_subscription')
+      .delete()
+      .match({subscriber_user_id: subscriberUserId, subscribed_to_user_id: subscribedToUserId});
   }
 
   async removeBookmark(postID: any, subscriberID: any) {
