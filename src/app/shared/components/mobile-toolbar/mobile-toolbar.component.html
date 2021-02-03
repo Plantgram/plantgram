@@ -12,7 +12,7 @@
     </button>
     <mat-menu #beforeMenu="matMenu" xPosition="before">
       <ng-template matMenuContent>
-        <button mat-menu-item [routerLink]="['/user', '1']">
+        <button mat-menu-item [routerLink]="['/user', authUserId]">
           <mat-icon>perm_identity</mat-icon>
           <span>My profile</span>
         </button>
