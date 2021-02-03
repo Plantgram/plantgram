@@ -27,13 +27,15 @@
           <mat-form-field class="form-field" appearance="fill">
             <mat-label>Enter your email</mat-label>
             <input matInput required formControlName="email" placeholder="pat@example.com" />
-            <mat-error [hidden]="form.get('email')?.invalid">{{ getErrorMessage() }}</mat-error>
+            <mat-error *ngIf="email?.errors?.email">You must enter an email</mat-error>
+            <mat-error *ngIf="email?.errors?.required">You must enter a value</mat-error>
           </mat-form-field>
 
           <mat-form-field class="form-field" appearance="fill">
             <mat-label>Enter your password</mat-label>
             <input matInput formControlName="password" [type]="isPasswordVisible ? 'text' : 'password'" required />
             <button
+              type="button"
               mat-icon-button
               matSuffix
               (click)="isPasswordVisible = !isPasswordVisible"
@@ -53,6 +55,7 @@
               required
             />
             <button
+              type="button"
               mat-icon-button
               matSuffix
               (click)="isPasswordVisible = !isPasswordVisible"
@@ -63,10 +66,10 @@
             </button>
           </mat-form-field>
 
-          <mat-error [hidden]="form.hasError('passwordsNotMatching')">Passwords are not matching.</mat-error>
-          <mat-error [hidden]="signupError">Registration failed</mat-error>
+          <mat-error *ngIf="form.hasError('passwordsNotMatching')">Passwords are not matching.</mat-error>
+          <mat-error *ngIf="signupError">Registration failed</mat-error>
 
-          <button class="form-field" mat-raised-button color="primary"> Register </button>
+          <button type="submit" class="form-field" mat-raised-button color="primary"> Register </button>
         </form>
 
         <div class="separator form-field" color="primary">OR</div>

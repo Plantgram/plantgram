@@ -1,13 +1,7 @@
-import { AuthService } from 'src/app/core/services/auth.service';
-
 import { Component } from '@angular/core';
-import {
-    AbstractControl,
-    FormBuilder,
-    FormGroup,
-    Validators,
-} from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 function matchPassword(group: AbstractControl) {
   const password = group.get('password')?.value;
@@ -36,24 +30,17 @@ export class SignupComponent {
       {
         firstname: [''],
         lastname: [''],
-        email: ['', Validators.required],
-        password: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required]],
         confirmPassword: [''],
       },
-      { validators: matchPassword }
+      { validators: matchPassword, updateOn: 'blur' }
     );
     this.imageUrl = `assets/login-images/plant-0${Math.floor(Math.random() * NUMBER_OF_AVAILABLE_IMAGES) + 1}.jpg`;
   }
 
-  getErrorMessage() {
-    const email = this.form.get('email');
-    if (email && email.hasError('required')) {
-      return 'You must enter a value';
-    }
-    if (email && email.hasError('email')) {
-      return 'Not a valid email';
-    }
-    return '';
+  get email() {
+    return this.form.get('email');
   }
 
   async onSubmit() {
