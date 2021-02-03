@@ -12,7 +12,9 @@
         <mat-card-title>Login to Plantgram</mat-card-title>
       </mat-card-header>
 
-      <button (click)="onGithubLogin()" class="form-field" mat-stroked-button color="primary">Github Login</button>
+      <button type="button" (click)="onGithubLogin()" class="form-field" mat-stroked-button color="primary"
+        >Github Login</button
+      >
 
       <mat-card-content>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -27,6 +29,7 @@
             <mat-label>Enter your password</mat-label>
             <input matInput formControlName="password" [type]="isPasswordVisible ? 'text' : 'password'" required />
             <button
+              type="button"
               mat-icon-button
               matSuffix
               (click)="isPasswordVisible = !isPasswordVisible"
@@ -39,7 +42,7 @@
 
           <mat-error *ngIf="loginError">Invalid Email or Password</mat-error>
 
-          <button class="form-field" mat-raised-button color="primary">Login</button>
+          <button type="submit" class="form-field" mat-raised-button color="primary">Login</button>
         </form>
 
         <div class="separator form-field" color="primary">OR</div>
