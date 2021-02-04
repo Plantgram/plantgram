@@ -9,7 +9,7 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <div *ngIf="isFollowed; else elseBlock">
+        <div *ngIf="isFoll; else elseBlock">
           <button mat-menu-item (click)="unSubscribe()">
             <mat-icon>person_remove</mat-icon>
             <span>Unfollow</span>

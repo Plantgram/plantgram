@@ -23,7 +23,12 @@ export class UserComponent implements OnInit {
   id: any;
   request: any;
   user: any;
-  user_posts: any;
+  userPosts: any;
+  userPostsNumber: any;
+  userFollowers: any;
+  userFollowersNumber: any;
+  userFollowing: any;
+  userFollowingNumber: any;
   isLoggedIn: any;
   notLoggedInUserProfile: any;
   isFollowed: any;
@@ -38,14 +43,19 @@ export class UserComponent implements OnInit {
     this.isLoggedIn = (authService.currentUser !== null) ? true : false;
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.request = this.Activatedroute.paramMap.subscribe(async (params) => {
       this.id = params.get('id');
-      this.notLoggedInUserProfile = (this.authService.currentUser?.id !== this.id) ? true : false;
       this.user = await this.getUserProfile();
+      this.notLoggedInUserProfile = (this.authService.currentUser?.id !== this.id) ? true : false;
       this.isFollowed = await this.checkIfSubscriptionExists();
+      await this.getUserPosts();
+      this.userFollowers = await this.getUserFollowers(this.id);
+      this.userFollowersNumber = (this.userFollowers.length > 0) ? this.userFollowers.length : 0;
+      this.userFollowing = await this.getUserFollowing(this.id);
+      this.userFollowingNumber = (this.userFollowing.length > 0) ? this.userFollowers.length : 0;
     });
-  }
+   }
 
   async getUserProfile() {
     const req = await this.dbService.getUserProfile(this.id);
@@ -75,5 +85,33 @@ export class UserComponent implements OnInit {
     }
 
     return false;
+  }
+
+  async getUserPosts() {
+    try {
+      this.userPosts = await this.dbService.getUserPosts(this.user.id);
+      this.userPostsNumber = this.userPosts.body.length;
+      return this.userPosts;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getUserFollowers(id: any) {
+    try {
+      const data = await this.dbService.getUserFollowers(id);
+      return data.body;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getUserFollowing(id: any) {
+    try {
+      const data = await this.dbService.getUserFollowers(id);
+      return data.body;
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
