@@ -1,15 +1,9 @@
-import { NgxMasonryOptions } from 'ngx-masonry';
-
-import {
-    Component,
-    Inject,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-
+import { NgxMasonryOptions } from 'ngx-masonry';
+import { DatabaseService } from 'src/app/core/services/database.service';
 import { new_mock } from '../../../assets/new_mock';
 import { NewPostComponent } from '../new-post/new-post.component';
-import { DatabaseService } from 'src/app/core/services/database.service';
 
 @Component({
   selector: 'app-explore',
@@ -24,7 +18,7 @@ export class ExploreComponent implements OnInit {
     gutter: 20,
   };
 
-  constructor(public dialog: MatDialog, private db: DatabaseService ) {}
+  constructor(public dialog: MatDialog, private db: DatabaseService) {}
   async ngOnInit(): Promise<void> {
     this.dbPosts = await this.getPosts();
   }

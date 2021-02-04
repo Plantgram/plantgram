@@ -1,38 +1,14 @@
-<app-mobile-toolbar class="toolbar" (menuClicked)="drawer.toggle()"></app-mobile-toolbar>
-
-<mat-drawer-container class="sidenav-container" autosize>
-  <mat-drawer color="primary" #drawer class="sidenav" mode="over">
-    <mat-divider></mat-divider>
-    <div class="actionbar">
-      <mat-list role="list">
-        <mat-list-item role="listitem"
-          ><a mat-button [routerLink]="['/explore']"><mat-icon>search</mat-icon>Search</a></mat-list-item
-        >
-        <mat-list-item role="listitem"
-          ><a mat-button [routerLink]="['/explore']"><mat-icon>explore</mat-icon>Explore</a></mat-list-item
-        >
-        <mat-list-item role="listitem"
-          ><a mat-button [routerLink]="['/settings']"><mat-icon>settings</mat-icon>Settings</a></mat-list-item
-        >
-        <mat-list-item role="listitem"
-          ><button mat-button (click)="openNewPostDialog()">New post</button>
-        </mat-list-item>
-      </mat-list>
-    </div>
-  </mat-drawer>
-
-  <main class="sidenav-content">
-    <ngx-masonry [options]="myOptions">
-      <app-post
-        *ngFor="let post of dbPosts"
-        [post]="post"
-        ngxMasonryItem
-        class="grid-item"
-        [ngStyle]="{ width: '100%' }"
-        [ngStyle.sm]="{ width: '48%' }"
-        [ngStyle.md]="{ width: '31%' }"
-        [ngStyle.gt-md]="{ width: '23%' }"
-      ></app-post>
-    </ngx-masonry>
-  </main>
-</mat-drawer-container>
+<main class="sidenav-content">
+  <ngx-masonry [options]="myOptions">
+    <app-post
+      *ngFor="let post of dbPosts"
+      [post]="post"
+      ngxMasonryItem
+      class="grid-item"
+      [ngStyle]="{ width: '100%' }"
+      [ngStyle.sm]="{ width: '48%' }"
+      [ngStyle.md]="{ width: '31%' }"
+      [ngStyle.gt-md]="{ width: '23%' }"
+    ></app-post>
+  </ngx-masonry>
+</main>
