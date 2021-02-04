@@ -5,7 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
@@ -14,15 +17,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatChipsModule } from '@angular/material/chips';
-
 import { RouterModule } from '@angular/router';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { NgxMasonryModule } from 'ngx-masonry';
-
-import { MobileToolbarComponent } from './components/mobile-toolbar/mobile-toolbar.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PlantgramLogoComponent } from './components/plantgram-logo/plantgram-logo.component';
 
@@ -49,7 +46,7 @@ const MATERIAL_MODULES = [
 ];
 
 @NgModule({
-  declarations: [PlantgramLogoComponent, MobileToolbarComponent, PageNotFoundComponent],
+  declarations: [PlantgramLogoComponent, PageNotFoundComponent],
   imports: [RouterModule, CommonModule, ...MATERIAL_MODULES],
   exports: [
     CommonModule,
@@ -57,7 +54,6 @@ const MATERIAL_MODULES = [
     FormsModule,
     ReactiveFormsModule,
     PlantgramLogoComponent,
-    MobileToolbarComponent,
     PageNotFoundComponent,
     ...MATERIAL_MODULES,
   ],
