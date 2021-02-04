@@ -1,7 +1,8 @@
 <section class="container">
   <section class="user-section">
     <section class="us-image">
-      <img src="{{ user.user_image_path }}" />
+      <!-- <img src="{{ user.user_image_path }}" /> -->
+      <img src="../../../assets/plant.jpg" />
     </section>
     <section class="us-content">
       <div class="c-user">
@@ -9,9 +10,14 @@
           <span>{{ user.first_name }}</span>
           <span>{{ user.last_name }}</span>
         </div>
-        <div class="c-actions">
+        <div class="c-actions" *ngIf="isLoggedIn && notLoggedInUserProfile">
           <span>
-            <button mat-raised-button color="primary">Follow</button>
+            <div *ngIf="isFollowed; else isNotFollowed">
+              <button mat-raised-button color="accent" (click)="unSubscribe()">Unfollow</button>
+            </div>
+            <ng-template #isNotFollowed>
+              <button mat-raised-button color="primary" (click)="subscribe()">Follow</button>
+            </ng-template>
           </span>
           <span>
             <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
@@ -24,9 +30,9 @@
         <!-- <span><strong class="font">{{user.posts.length}}</strong> posts</span>
         <span><strong class="font">{{user.followers.length}}</strong> followers</span>
         <span><strong class="font">{{user.following.length}}</strong> following</span> -->
-        <span><strong class="font">10</strong> posts</span>
-        <span><strong class="font">10</strong> followers</span>
-        <span><strong class="font">10</strong> following</span>
+        <span><strong class="font">{{userPostsNumber}}</strong> posts</span>
+        <span><strong class="font">{{userFollowersNumber}}</strong> followers</span>
+        <span><strong class="font">{{userFollowingNumber}}</strong> following</span>
       </div>
       <div class="c-description flex-evenly padding-20">
         {{ user.about }}

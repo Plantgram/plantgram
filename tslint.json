@@ -4,6 +4,7 @@
     "codelyzer"
   ],
   "rules": {
+    "init-declarations": ["error", "never", { "ignoreForLoopInit": true }],
     "align": {
       "options": [
         "parameters",

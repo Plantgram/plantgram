@@ -43,11 +43,16 @@ export class AuthService {
   }
 
   async signOut() {
-    const { error } = await this.supabaseClient.auth.signOut();
-    if (error) {
-      // TODO: Logout failed
-    } else {
-      this.userSubject.next(null);
+    try {
+      const { error } = await this.supabaseClient.auth.signOut();
+      if (error === null) {
+        this.userSubject.next(null);
+      }
+      else {
+        console.log(error);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
