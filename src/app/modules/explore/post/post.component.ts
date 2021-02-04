@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { DatabaseService } from 'src/app/core/services/database.service';
 
@@ -20,7 +21,7 @@ export class PostComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.isAuthor = (this.isLoggedIn && this.authService.currentUser?.id !== this.post.user_id) ? true : false;
-    this.isFollowed = await this.checkIfSubscriptionExists();
+    this.isFollowed = this.checkIfSubscriptionExists();
   }
 
   async subscribe() {

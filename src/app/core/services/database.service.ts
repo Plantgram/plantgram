@@ -5,6 +5,7 @@ import {
     Injectable,
 } from '@angular/core';
 import { SupabaseClient } from '@supabase/supabase-js';
+import { equal } from 'assert';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +40,20 @@ export class DatabaseService {
     return await this.supabaseClient
     .from('post_bookmarks')
     .select('post_id, user_id');
+  }
+
+  async getUserFollowers(id: any) {
+    return await this.supabaseClient
+    .from('user_subscription')
+    .select('subscriber_user_id, subscribed_to_user_id')
+    .eq('subscribed_to_user_id', id);
+  }
+
+  async getUserFollowing(id: any) {
+    return await this.supabaseClient
+    .from('user_subscription')
+    .select('subscriber_user_id, subscribed_to_user_id')
+    .eq('subscriber_user_id', id);
   }
 
   async getSubscription(subscriberUserId: any, subscribedToUserId: any) {
