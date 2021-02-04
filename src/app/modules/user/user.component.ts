@@ -8,6 +8,7 @@ import { AuthService } from '../../core/services/auth.service';
 import { DatabaseService } from '../../core/services/database.service';
 
 interface User {
+  id: string;
   first_name: string;
   last_name: string;
   about: string;
@@ -24,15 +25,15 @@ export class UserComponent implements OnInit {
   request: any;
   user: any;
   userPosts: any;
-  userPostsNumber: any;
+  userPostsNumber = 0;
   userFollowers: any;
-  userFollowersNumber: any;
   userFollowing: any;
-  userFollowingNumber: any;
-  isLoggedIn: any;
-  notLoggedInUserProfile: any;
-  isFollowed: any;
-  isNotFollowed: any;
+  userFollowersNumber = 0;
+  userFollowingNumber = 0;
+  isLoggedIn = false;
+  notLoggedInUserProfile = false;
+  isFollowed = false;
+  // isNotFollowed!: boolean;
   sub: any;
 
   constructor(
@@ -93,25 +94,25 @@ export class UserComponent implements OnInit {
       this.userPostsNumber = this.userPosts.body.length;
       return this.userPosts;
     } catch (error) {
-      console.log(error);
+      return [];
     }
   }
 
-  async getUserFollowers(id: any) {
+  async getUserFollowers(id: string) {
     try {
       const data = await this.dbService.getUserFollowers(id);
       return data.body;
     } catch (error) {
-      console.log(error);
+      return [];
     }
   }
 
-  async getUserFollowing(id: any) {
+  async getUserFollowing(id: string) {
     try {
       const data = await this.dbService.getUserFollowers(id);
       return data.body;
     } catch (error) {
-      console.log(error);
+      return [];
     }
   }
 }
