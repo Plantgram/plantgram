@@ -49,7 +49,7 @@ export class UserComponent implements OnInit {
       this.id = params.get('id');
       this.user = await this.getUserProfile();
       this.notLoggedInUserProfile = (this.authService.currentUser?.id !== this.id) ? true : false;
-      this.isFollowed = await this.checkIfSubscriptionExists();
+      this.isFollowed = (this.isLoggedIn) ? await this.checkIfSubscriptionExists() : false;
       await this.getUserPosts();
       this.userFollowers = await this.getUserFollowers(this.id);
       this.userFollowersNumber = (this.userFollowers.length > 0) ? this.userFollowers.length : 0;

@@ -21,7 +21,7 @@ export class PostComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.isAuthor = (this.isLoggedIn && this.authService.currentUser?.id !== this.post.user_id) ? true : false;
-    this.isFollowed = this.checkIfSubscriptionExists();
+    this.isFollowed = (this.isLoggedIn) ? await this.checkIfSubscriptionExists() : false;
   }
 
   async subscribe() {
