@@ -1,29 +1,26 @@
-<main>
-  <app-mobile-toolbar
-    class="toolbar"
-    [user]="user"
-    (menuClicked)="drawer.toggle()"
-    (logoutClicked)="onLogout()"
-    (profileClicked)="onProfile()"
-  ></app-mobile-toolbar>
-  <mat-drawer-container class="sidenav-container" autosize>
-    <mat-drawer color="primary" #drawer class="sidenav" mode="over">
-      <mat-divider></mat-divider>
-      <div class="actionbar">
-        <mat-list role="list">
-          <mat-list-item role="listitem"
-            ><a mat-button [routerLink]="['/explore']"><mat-icon>search</mat-icon>Search</a></mat-list-item
-          >
-          <mat-list-item role="listitem"
-            ><a mat-button [routerLink]="['/explore']"><mat-icon>explore</mat-icon>Explore</a></mat-list-item
-          >
-          <mat-list-item role="listitem"
-            ><a mat-button [routerLink]="['/settings']"><mat-icon>settings</mat-icon>Settings</a></mat-list-item
-          >
-          <mat-list-item role="listitem"><button mat-button>New post</button> </mat-list-item>
-        </mat-list>
-      </div>
-    </mat-drawer>
-    <router-outlet></router-outlet>
-  </mat-drawer-container>
-</main>
+<app-mobile-toolbar
+  class="toolbar"
+  [user]="user"
+  (menuClicked)="drawer.toggle()"
+  (logoutClicked)="onLogout()"
+  (profileClicked)="onProfile()"
+></app-mobile-toolbar>
+<mat-drawer-container class="sidenav-container" autosize>
+  <mat-drawer color="primary" #drawer class="sidenav" mode="over">
+    <mat-divider></mat-divider>
+    <div class="actionbar">
+      <mat-list role="list">
+        <!-- <mat-list-item role="listitem"
+          ><a mat-button [routerLink]="['/explore']"><mat-icon>search</mat-icon>Search</a></mat-list-item
+        > -->
+        <mat-list-item role="listitem"
+          ><a mat-button [routerLink]="['/explore']"><mat-icon>explore</mat-icon>Explore</a></mat-list-item
+        >
+        <mat-list-item role="listitem"
+          ><a mat-button [routerLink]="['/settings']"><mat-icon>settings</mat-icon>Settings</a></mat-list-item
+        >
+      </mat-list>
+    </div>
+  </mat-drawer>
+  <router-outlet></router-outlet>
+</mat-drawer-container>
