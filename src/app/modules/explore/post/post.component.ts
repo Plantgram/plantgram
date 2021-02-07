@@ -47,6 +47,10 @@ export class PostComponent implements OnInit {
     return false;
   }
 
+  get randomSrc() {
+    return `https://source.unsplash.com/collection/958408/indoor-plants?v=${this.post.id}`;
+  }
+
   getPostTagList() {
     return this.post.tags && this.post.tags.tagsList ? this.post.tags.tagsList.join(', ') : '';
   }
