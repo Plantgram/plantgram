@@ -2,6 +2,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { DatabaseService } from 'src/app/core/services/database.service';
 
@@ -24,7 +25,12 @@ export class NewPostComponent {
 
   public postForm: FormGroup;
 
-  constructor(private databaseService: DatabaseService, private authService: AuthService, public fb: FormBuilder) {
+  constructor(
+    public dialogRef: MatDialogRef<NewPostComponent>,
+    private databaseService: DatabaseService,
+    private authService: AuthService,
+    public fb: FormBuilder
+  ) {
     this.postForm = new FormGroup({
       title: new FormControl('', [Validators.required]),
       description: new FormControl(''),
@@ -65,7 +71,7 @@ export class NewPostComponent {
   }
 
   async onFormSubmit() {
-    const result = await this.databaseService.insertPost(this.postForm.value, this.authService.currentUser?.id);
-    console.log('result', result);
+    await this.databaseService.insertPost(this.postForm.value, this.authService.currentUser?.id);
+    this.dialogRef.close('CREATED');
   }
 }
