@@ -7,14 +7,13 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './core/layout/layout.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ExploreModule } from './modules/explore/explore.module';
-import { NewPostComponent } from './modules/new-post/new-post.component';
 import { SettingsModule } from './modules/settings/settings.module';
 import { UserModule } from './modules/user/user.module';
 import { SharedModule } from './shared/shared.module';
 import { supabaseClient, SUPABASE_CLIENT } from './supabase-client';
 
 @NgModule({
-  declarations: [AppComponent, NewPostComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

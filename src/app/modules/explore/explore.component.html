@@ -1,7 +1,19 @@
-<main class="sidenav-content">
+<main class="explore">
+  <div class="explore__toolbar">
+    <button
+      *ngIf="user$ | async"
+      type="button"
+      (click)="onNewPost()"
+      class="form-field"
+      mat-raised-button
+      color="primary"
+      >Create New Post</button
+    >
+  </div>
+
   <ngx-masonry [options]="myOptions">
     <app-post
-      *ngFor="let post of dbPosts"
+      *ngFor="let post of posts"
       [post]="post"
       ngxMasonryItem
       class="grid-item"

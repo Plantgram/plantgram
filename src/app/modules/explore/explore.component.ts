@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { User } from '@supabase/supabase-js';
 import { NgxMasonryOptions } from 'ngx-masonry';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { DatabaseService } from 'src/app/core/services/database.service';
-import { new_mock } from '../../../assets/new_mock';
-import { NewPostComponent } from '../new-post/new-post.component';
+import { NewPostComponent } from './new-post/new-post.component';
 
 @Component({
   selector: 'app-explore',
@@ -11,21 +13,24 @@ import { NewPostComponent } from '../new-post/new-post.component';
   styleUrls: ['./explore.component.styl'],
 })
 export class ExploreComponent implements OnInit {
-  posts = new_mock;
-  dbPosts: any;
+  posts: any; // FIXME: Add posts interface
+  user$: Observable<User | null>;
 
   public myOptions: NgxMasonryOptions = {
     gutter: 20,
   };
 
-  constructor(public dialog: MatDialog, private db: DatabaseService) {}
-  async ngOnInit(): Promise<void> {
-    this.dbPosts = await this.getPosts();
+  constructor(public dialog: MatDialog, private databaseService: DatabaseService, private authService: AuthService) {
+    this.user$ = this.authService.currentUser$;
   }
 
-  openNewPostDialog(): void {
+  async ngOnInit(): Promise<void> {
+    this.posts = await this.getPosts();
+  }
+
+  onNewPost(): void {
     const dialogRef = this.dialog.open(NewPostComponent, {
-      width: '30%',
+      width: '60%',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -33,8 +38,8 @@ export class ExploreComponent implements OnInit {
     });
   }
 
-  async getPosts() {
-    const { data, error } = await this.db.getAllPosts();
+  private async getPosts() {
+    const { data, error } = await this.databaseService.getAllPosts();
     return data;
   }
 }

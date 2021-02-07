@@ -2,9 +2,9 @@
   <mat-card-header>
     <div mat-card-avatar class="header-image"></div>
     <mat-card-title>
-      <a [routerLink]="['/user/', post.user_id]">{{post.author.first_name}} {{post.author.last_name}}</a>
+      <a [routerLink]="['/user/', post.user_id]">{{ post.author.first_name }} {{ post.author.last_name }}</a>
     </mat-card-title>
-    <div class="button-container" *ngIf="isLoggedIn && isAuthor"> 
+    <div class="button-container" *ngIf="isLoggedIn && isAuthor">
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <mat-icon>more_vert</mat-icon>
       </button>
@@ -17,27 +17,26 @@
         </div>
         <ng-template #elseBlock>
           <button mat-menu-item (click)="subscribe()">
-          <mat-icon>person_add</mat-icon>
-          <span>Follow</span>
-        </button></ng-template>
-      </mat-menu>      
+            <mat-icon>person_add</mat-icon>
+            <span>Follow</span>
+          </button></ng-template
+        >
+      </mat-menu>
     </div>
   </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" />
   <mat-card-content class="title">
     <p>
-      {{post.title}}
+      {{ post.title }}
     </p>
   </mat-card-content>
   <mat-card-content class="description">
     <p>
-      {{post.description}}
+      {{ post.description }}
     </p>
   </mat-card-content>
   <mat-card-content class="tags">
-    <p>
-      {{post.tags.tagsList.join(' ')}}
-    </p>
+    <p>{{ getPostTagList() }}</p>
   </mat-card-content>
   <mat-card-actions>
     <button mat-button>LIKE</button>

@@ -1,9 +1,8 @@
 <div>
   <div class="post-title">
-    <span class="logo">
-      <img src="assets/plantgram_logo-v02.svg" [ngStyle]="{ width: size, height: size }" />
-    </span>
-    <p> Create a new<span class="title">Plantgram</span>story </p>
+    <p
+      >Create a new <span class="logo"><app-plantgram-logo></app-plantgram-logo>Plantgram</span> story</p
+    >
   </div>
 
   <form [formGroup]="postForm" #form="ngForm" (ngSubmit)="onFormSubmit()" novalidate>
@@ -23,18 +22,22 @@
 
     <mat-form-field class="example-chip-list">
       <mat-label>Tags</mat-label>
-      <mat-chip-list #chipList aria-label="Tags">
-        <mat-chip *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable" (removed)="removeTag(tag)">
-          {{tag}}
+      <mat-chip-list #tagList formControlName="tags" aria-label="Tags">
+        <mat-chip
+          *ngFor="let tag of postForm.get('tags')?.value"
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="removeTag(tag)"
+        >
+          {{ tag }}
           <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
         </mat-chip>
         <input
           placeholder="Add new tag"
-          [matChipInputFor]="chipList"
+          [matChipInputFor]="tagList"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
           [matChipInputAddOnBlur]="addOnBlur"
           (matChipInputTokenEnd)="addTag($event)"
-          formControlName="tags[]"
         />
       </mat-chip-list>
     </mat-form-field>
@@ -45,7 +48,7 @@
       </div>
     </div>
 
-    <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelectImage($event)">
+    <!-- <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelectImage($event)">
       <ngx-dropzone-label>
         <div>
           <h2>Upload images</h2>
@@ -59,6 +62,6 @@
         (removed)="onRemoveImage(f)"
       >
       </ngx-dropzone-image-preview>
-    </div>
+    </div> -->
   </form>
 </div>
