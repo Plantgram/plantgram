@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { DatabaseService } from 'src/app/core/services/database.service';
-import { new_mock } from '../../../assets/new_mock';
 import { NewPostComponent } from '../new-post/new-post.component';
 
 @Component({
@@ -11,21 +10,21 @@ import { NewPostComponent } from '../new-post/new-post.component';
   styleUrls: ['./explore.component.styl'],
 })
 export class ExploreComponent implements OnInit {
-  posts = new_mock;
-  dbPosts: any;
+  posts: any; // FIXME: Add posts interface
 
   public myOptions: NgxMasonryOptions = {
     gutter: 20,
   };
 
-  constructor(public dialog: MatDialog, private db: DatabaseService) {}
+  constructor(public dialog: MatDialog, private databaseService: DatabaseService) {}
+
   async ngOnInit(): Promise<void> {
-    this.dbPosts = await this.getPosts();
+    this.posts = await this.getPosts();
   }
 
-  openNewPostDialog(): void {
+  onNewPost(): void {
     const dialogRef = this.dialog.open(NewPostComponent, {
-      width: '30%',
+      width: '60%',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -33,8 +32,8 @@ export class ExploreComponent implements OnInit {
     });
   }
 
-  async getPosts() {
-    const { data, error } = await this.db.getAllPosts();
+  private async getPosts() {
+    const { data, error } = await this.databaseService.getAllPosts();
     return data;
   }
 }
