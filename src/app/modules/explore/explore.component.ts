@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { User } from '@supabase/supabase-js';
 import { NgxMasonryOptions } from 'ngx-masonry';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { DatabaseService } from 'src/app/core/services/database.service';
-import { NewPostComponent } from '../new-post/new-post.component';
+import { NewPostComponent } from './new-post/new-post.component';
 
 @Component({
   selector: 'app-explore',
@@ -11,12 +14,15 @@ import { NewPostComponent } from '../new-post/new-post.component';
 })
 export class ExploreComponent implements OnInit {
   posts: any; // FIXME: Add posts interface
+  user$: Observable<User | null>;
 
   public myOptions: NgxMasonryOptions = {
     gutter: 20,
   };
 
-  constructor(public dialog: MatDialog, private databaseService: DatabaseService) {}
+  constructor(public dialog: MatDialog, private databaseService: DatabaseService, private authService: AuthService) {
+    this.user$ = this.authService.currentUser$;
+  }
 
   async ngOnInit(): Promise<void> {
     this.posts = await this.getPosts();

@@ -1,6 +1,12 @@
 <main class="explore">
   <div class="explore__toolbar">
-    <button type="button" (click)="onNewPost()" class="form-field" mat-raised-button color="primary"
+    <button
+      *ngIf="user$ | async"
+      type="button"
+      (click)="onNewPost()"
+      class="form-field"
+      mat-raised-button
+      color="primary"
       >Create New Post</button
     >
   </div>
